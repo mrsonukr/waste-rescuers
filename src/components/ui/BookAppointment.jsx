@@ -89,7 +89,7 @@ const BookAppointment = () => {
   };
 
   return (
-    <div className="bg-gradient-to-br mt-12 from-green-500 to-teal-600 min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-10">
+    <div id="book" className="bg-gradient-to-br mt-12 from-green-500 to-teal-600 min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-10">
       <div
         ref={sectionRef}
         className={`w-full max-w-lg bg-white rounded-xl shadow-2xl p-8 space-y-8 transform transition-all duration-500 ease-out ${

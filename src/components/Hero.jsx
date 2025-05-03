@@ -80,9 +80,9 @@ const Hero = () => {
                 : "opacity-0 translate-y-10"
             }`}
           >
-            <button className="uppercase bg-green-500 py-3 px-6 rounded-full hover:bg-green-600 transition duration-200 text-sm sm:text-base">
+            <a className="uppercase bg-green-500 py-3 px-6 rounded-full hover:bg-green-600 transition duration-200 text-sm sm:text-base" href="#book">
               Book Now
-            </button>
+            </a>
             <a
               href="tel:+917061543815"
               className="uppercase bg-orange-500 py-3 px-6 rounded-full hover:bg-orange-600 transition duration-200 text-sm sm:text-base"

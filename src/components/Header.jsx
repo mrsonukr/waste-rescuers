@@ -80,7 +80,7 @@ const Header = () => {
             </div>
           </li>
           <li>
-            <a href="#" className="relative group">
+            <a href="#about" className="relative group">
               About
               <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-orange-600 transition-all duration-300 group-hover:w-full"></span>
             </a>
@@ -214,7 +214,7 @@ const Header = () => {
             </li>
             <li>
               <a
-                href="#"
+                href="#about"
                 className="block py-2 hover:text-orange-600 transition-colors duration-200"
                 onClick={toggleSidebar}
               >

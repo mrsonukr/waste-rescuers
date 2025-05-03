@@ -58,7 +58,7 @@ const ListCard = () => {
           </p>
           <div>
             <a
-              href="/services"
+              href="#services"
               className="inline-flex items-center text-gray-500 hover:text-gray-700 transition-colors duration-200"
             >
               View All Services

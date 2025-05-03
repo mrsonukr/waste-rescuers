@@ -35,7 +35,11 @@ const AboutTab = () => {
   }, []); // Empty dependency array to run only on mount
 
   return (
-    <div ref={sectionRef} className="mt-10 px-4 sm:px-6 md:px-12">
+    <div
+      id="about"
+      ref={sectionRef}
+      className="h-screen flex items-center mt-10 px-4 sm:px-6 md:px-12"
+    >
       <div className="flex flex-col md:flex-row justify-between gap-6">
         {/* Left Content */}
         <div
