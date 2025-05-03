@@ -67,7 +67,7 @@ const Home = () => {
 
         {/* Button Section */}
         <div className="w-full md:w-auto text-left md:text-right">
-          <button className="uppercase bg-orange-500 py-2 px-5 text-white rounded-xl hover:bg-orange-600 transition duration-200 text-xs sm:text-sm w-full md:w-auto">
+          <button className="uppercase bg-orange-500 py-4 px-5 text-white rounded-xl hover:bg-orange-600 transition duration-200 text-xs sm:text-sm w-full md:w-auto">
             Book An Appointment
           </button>
         </div>
