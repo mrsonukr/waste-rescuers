@@ -5,6 +5,10 @@ import ListCard from "../components/ui/ListCard";
 import Footer from "../components/Footer";
 import ContactCard from "../components/ui/ContactCard";
 import SolutionCard from "../components/ui/SolutionCard";
+import AboutTab from "../components/AboutTab";
+import Customer from "../components/ui/Customer";
+import Faq from "../components/ui/Faq";
+import BookAppointment from "../components/ui/BookAppointment";
 
 const Home = () => {
   const services = [
@@ -85,7 +89,10 @@ const Home = () => {
           ))}
         </div>
       </div>
-
+      <AboutTab />
+      <Customer />
+      <Faq />
+      <BookAppointment />
       <Footer />
     </div>
   );
