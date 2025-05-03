@@ -47,7 +47,7 @@ const AboutTab = () => {
             About Us
           </p>
           <p className="text-xl sm:text-2xl text-green-500 font-bold">
-            Over 22 Years of Trusted Experience in Waste Removal Services
+            Trusted Experience in Waste Removal Services
           </p>
           <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
             For more than two decades, <strong>Quick Removals</strong> has been
@@ -57,11 +57,10 @@ const AboutTab = () => {
             businesses, and construction sites across the city.
             <br />
             <br />
-            With 22 years of experience, our team knows what it takes to handle
-            your waste removal needs swiftly and responsibly. From household
-            clearances to commercial and after-builders cleanups, we ensure
-            every job is completed with professionalism and a commitment to
-            sustainability.
+            Our team knows what it takes to handle your waste removal needs
+            swiftly and responsibly. From household clearances to commercial and
+            after-builders cleanups, we ensure every job is completed with
+            professionalism and a commitment to sustainability.
             <br />
             <br />
             At Quick Removals, we’re not just removing waste—we’re creating
