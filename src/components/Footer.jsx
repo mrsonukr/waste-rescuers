@@ -6,6 +6,7 @@ import {
   FaWhatsapp,
   FaClock,
 } from "react-icons/fa";
+import logo from "/assets/logo.svg";
 
 const Footer = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -54,7 +55,7 @@ const Footer = () => {
           }`}
         >
           <img
-            src="https://quickyremovals.co.uk/wp-content/uploads/2025/01/QuickRemoval-Logo.png"
+            src={logo}
             alt="Quick Removals Logo"
             width={70}
             height={57}
@@ -67,22 +68,22 @@ const Footer = () => {
             <li className="flex items-start justify-center sm:justify-start">
               <FaMapMarkerAlt className="text-green-400 mr-2 mt-1" size={16} />
               <span className="text-white text-xs sm:text-sm">
-                13 Britannia Road ilford London IG1 2EQ
+                12 Audley Gardens, IG3 9LB, Seven Kings, Ilford, Essex, UK
               </span>
             </li>
             <li className="flex items-start justify-center sm:justify-start">
               <FaPhoneAlt className="text-green-400 mr-2 mt-1" size={16} />
               <a
-                href="tel:+442030511719"
+                href="tel:+917061543815"
                 className="text-white text-xs sm:text-sm"
               >
-                +44-2030511719
+                +91-7061543815
               </a>
             </li>
             <li className="flex items-start justify-center sm:justify-start">
               <FaWhatsapp className="text-green-400 mr-2 mt-1" size={16} />
               <span className="text-white text-xs sm:text-sm">
-                +44-7777279807
+                +91-7061543815
               </span>
             </li>
           </ul>

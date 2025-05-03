@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 
 const Hero = () => {
   const images = [
-    "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
-    "https://images.unsplash.com/photo-1519046904884-53103b34b206?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
-    "https://images.unsplash.com/photo-1471922694854-ff1b63b20054?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
+    "/assets/bg-1.avif",
+    "/assets/bg-2.avif",
+    "/assets/bg-3.avif",
   ];
 
   const [currentImage, setCurrentImage] = useState(0);

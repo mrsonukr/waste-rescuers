@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-
+import logo from "/assets/logo.svg";
 const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
@@ -30,8 +30,10 @@ const Header = () => {
   return (
     <header className="bg-white text-gray-900 relative z-50">
       {/* Desktop Navigation */}
-      <nav className="hidden md:flex container mx-auto px-6 py-5 items-center justify-between">
-        <div className="text-3xl font-extrabold tracking-tight">Logo</div>
+      <nav className="hidden md:flex container mx-auto px-6 py-3 items-center justify-between">
+        <div className="w-28">
+          <img src={logo} alt="" />
+        </div>
         <ul className="flex space-x-8 text-lg font-medium">
           <li>
             <a href="#" className="relative group">
@@ -94,8 +96,10 @@ const Header = () => {
 
       {/* Mobile Navigation */}
       <div className="md:hidden">
-        <div className="flex justify-between items-center px-6 py-5">
-          <div className="text-2xl font-extrabold tracking-tight">Logo</div>
+        <div className="flex justify-between items-center px-6 py-3">
+          <div className="w-28">
+            <img src={logo} alt="" />
+          </div>
           <button onClick={toggleSidebar} className="focus:outline-none">
             <svg
               className="w-7 h-7"
@@ -123,8 +127,10 @@ const Header = () => {
             isSidebarOpen ? "translate-x-0" : "-translate-x-full"
           } transition-transform duration-300 ease-in-out z-50`}
         >
-          <div className="flex justify-between items-center px-6 py-5">
-            <div className="text-2xl font-extrabold tracking-tight">Logo</div>
+          <div className="flex justify-between items-center px-6 py-3">
+            <div className="w-28">
+              <img src={logo} alt="" />
+            </div>
             <button onClick={toggleSidebar} className="focus:outline-none">
               <svg
                 className="w-9 h-9 bg-green-500 p-1 rounded-lg"
