@@ -1,16 +1,28 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import logo from "/assets/logo.svg";
+
 const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const servicesRef = useRef(null);
+
+  const services = [
+    { slug: "waste-removal", title: "Waste Removal" },
+    { slug: "mattress-removal", title: "Mattress Removal" },
+    { slug: "man-and-van", title: "Man and Van" },
+    { slug: "rubbish-removal", title: "Rubbish Removal" },
+    { slug: "garden-waste-removal", title: "Garden Waste Removal" },
+    { slug: "furniture-removal", title: "Furniture Removal" },
+  ];
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
     if (isServicesOpen) setIsServicesOpen(false);
   };
 
-  const toggleServices = () => {
+  const toggleServices = (event) => {
+    event.stopPropagation(); // Prevent click from bubbling to sidebar or overlay
     setIsServicesOpen(!isServicesOpen);
   };
 
@@ -32,17 +44,20 @@ const Header = () => {
       {/* Desktop Navigation */}
       <nav className="hidden md:flex container mx-auto px-6 py-3 items-center justify-between">
         <div className="w-28">
-          <img src={logo} alt="" />
+          <img src={logo} alt="Logo" />
         </div>
         <ul className="flex space-x-8 text-lg font-medium">
           <li>
-            <a href="#" className="relative group">
+            <Link to="/" className="relative group">
               Home
               <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-orange-600 transition-all duration-300 group-hover:w-full"></span>
-            </a>
+            </Link>
           </li>
           <li ref={servicesRef} className="relative group">
-            <button className="flex items-center hover:text-orange-600 transition-colors duration-200">
+            <button
+              onClick={toggleServices}
+              className="flex items-center hover:text-orange-600 transition-colors duration-200"
+            >
               Services
               <svg
                 className="w-5 h-5 ml-1"
@@ -58,38 +73,40 @@ const Header = () => {
                 />
               </svg>
             </button>
-            <div className="absolute top-full left-0 mt-2 w-48 uppercase bg-white shadow-xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
-              <a
-                href="#"
-                className="block px-4 py-3 text-sm hover:text-orange-600 rounded-t-lg"
-              >
-                Appliance removal
-              </a>
-              <a
-                href="#"
-                className="block px-4 py-3 text-sm hover:text-orange-600"
-              >
-                Furniture removal
-              </a>
-              <a
-                href="#"
-                className="block px-4 py-3 text-sm hover:text-orange-600 rounded-b-lg"
-              >
-                Garden waste removal
-              </a>
+            <div
+              className={`absolute top-full left-0 mt-2 w-48 uppercase bg-white shadow-xl rounded-lg transition-all duration-300 z-10 ${
+                isServicesOpen ? "opacity-100 visible" : "opacity-0 invisible"
+              }`}
+            >
+              {services.map((service, index) => (
+                <Link
+                  key={service.slug}
+                  to={`/services/${service.slug}`}
+                  className={`block px-4 py-3 text-sm hover:text-orange-600 ${
+                    index === 0
+                      ? "rounded-t-lg"
+                      : index === services.length - 1
+                      ? "rounded-b-lg"
+                      : ""
+                  }`}
+                  onClick={() => setIsServicesOpen(false)}
+                >
+                  {service.title}
+                </Link>
+              ))}
             </div>
           </li>
           <li>
-            <a href="#about" className="relative group">
+            <Link to="/about" className="relative group">
               About
               <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-orange-600 transition-all duration-300 group-hover:w-full"></span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#" className="relative group">
+            <Link to="/contact" className="relative group">
               Contact
-              <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-orange-600 transition-all duration-300 group-hover:w-full"></span>
-            </a>
+              <span className="absolute left-0 bottom-0 w-0 h-0.4 bg-orange-600 transition-all duration-300 group-hover:w-full"></span>
+            </Link>
           </li>
         </ul>
       </nav>
@@ -98,7 +115,7 @@ const Header = () => {
       <div className="md:hidden">
         <div className="flex justify-between items-center px-6 py-3">
           <div className="w-28">
-            <img src={logo} alt="" />
+            <img src={logo} alt="Logo" />
           </div>
           <button onClick={toggleSidebar} className="focus:outline-none">
             <svg
@@ -126,10 +143,11 @@ const Header = () => {
           className={`fixed top-0 left-0 h-full w-72 bg-white shadow-2xl transform ${
             isSidebarOpen ? "translate-x-0" : "-translate-x-full"
           } transition-transform duration-300 ease-in-out z-50`}
+          onClick={(e) => e.stopPropagation()} // Prevent sidebar clicks from reaching overlay
         >
           <div className="flex justify-between items-center px-6 py-3">
             <div className="w-28">
-              <img src={logo} alt="" />
+              <img src={logo} alt="Logo" />
             </div>
             <button onClick={toggleSidebar} className="focus:outline-none">
               <svg
@@ -149,13 +167,13 @@ const Header = () => {
           </div>
           <ul className="flex flex-col space-y-3 px-6 py-6 text-lg font-medium">
             <li>
-              <a
-                href="#"
+              <Link
+                to="/"
                 className="block py-2 hover:text-orange-600 transition-colors duration-200"
                 onClick={toggleSidebar}
               >
                 Home
-              </a>
+              </Link>
             </li>
             <li>
               <button
@@ -179,47 +197,36 @@ const Header = () => {
               </button>
               {isServicesOpen && (
                 <div className="pl-4 space-y-2 mt-2">
-                  <a
-                    href="#"
-                    className="block py-2 text-sm hover:text-orange-600 transition-colors duration-200"
-                    onClick={toggleSidebar}
-                  >
-                    Appliance removal
-                  </a>
-                  <a
-                    href="#"
-                    className="block py-2 text-sm hover:text-orange-600 transition-colors duration-200"
-                    onClick={toggleSidebar}
-                  >
-                    Furniture removal
-                  </a>
-                  <a
-                    href="#"
-                    className="block py-2 text-sm hover:text-orange-600 transition-colors duration-200"
-                    onClick={toggleSidebar}
-                  >
-                    Garden waste removal
-                  </a>
+                  {services.map((service) => (
+                    <Link
+                      key={service.slug}
+                      to={`/services/${service.slug}`}
+                      className="block py-2 text-sm hover:text-orange-600 transition-colors duration-200"
+                      onClick={toggleSidebar}
+                    >
+                      {service.title}
+                    </Link>
+                  ))}
                 </div>
               )}
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                to="/about"
                 className="block py-2 hover:text-orange-600 transition-colors duration-200"
                 onClick={toggleSidebar}
               >
                 About
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="#about"
+              <Link
+                to="/contact"
                 className="block py-2 hover:text-orange-600 transition-colors duration-200"
                 onClick={toggleSidebar}
               >
                 Contact
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

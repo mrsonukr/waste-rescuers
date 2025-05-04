@@ -58,7 +58,10 @@ const Home = () => {
         <ListCard />
         <ContactCard />
       </div>
-      <div id="services" className="mt-24 px-4 sm:px-6 md:px-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 md:gap-0">
+      <div
+        id="services"
+        className="mt-24 px-4 sm:px-6 md:px-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 md:gap-0"
+      >
         {/* Text Section */}
         <div className="w-full md:w-auto text-left">
           <p className="uppercase text-sm sm:text-base font-semibold">
