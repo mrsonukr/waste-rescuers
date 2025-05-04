@@ -4,8 +4,9 @@ import logo from "/assets/logo.svg";
 
 const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isServicesOpen, setIsServicesOpen] = useState(false);
-  const servicesRef = useRef(null);
+  const [isDesktopServicesOpen, setIsDesktopServicesOpen] = useState(false);
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
+  const desktopServicesRef = useRef(null);
 
   const services = [
     { slug: "waste-removal", title: "Waste Removal" },
@@ -17,20 +18,36 @@ const Header = () => {
   ];
 
   const toggleSidebar = () => {
+    console.log("toggleSidebar called, isSidebarOpen:", isSidebarOpen);
     setIsSidebarOpen(!isSidebarOpen);
-    if (isServicesOpen) setIsServicesOpen(false);
+    if (isMobileServicesOpen) {
+      console.log("Closing mobile services dropdown");
+      setIsMobileServicesOpen(false);
+    }
   };
 
-  const toggleServices = (event) => {
-    event.stopPropagation(); // Prevent click from bubbling to sidebar or overlay
-    setIsServicesOpen(!isServicesOpen);
+  const toggleDesktopServices = () => {
+    console.log("toggleDesktopServices called, isDesktopServicesOpen:", isDesktopServicesOpen);
+    setIsDesktopServicesOpen(!isDesktopServicesOpen);
   };
 
-  // Close dropdown when clicking outside
+  const toggleMobileServices = (event) => {
+    event.stopPropagation();
+    event.preventDefault(); // Added to rule out default behavior interference
+    console.log("toggleMobileServices called, current isMobileServicesOpen:", isMobileServicesOpen);
+    setIsMobileServicesOpen((prev) => {
+      const newState = !prev;
+      console.log("Setting isMobileServicesOpen to:", newState);
+      return newState;
+    });
+  };
+
+  // Close desktop dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (servicesRef.current && !servicesRef.current.contains(event.target)) {
-        setIsServicesOpen(false);
+      if (desktopServicesRef.current && !desktopServicesRef.current.contains(event.target)) {
+        console.log("Click outside desktop services, closing dropdown");
+        setIsDesktopServicesOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -53,9 +70,9 @@ const Header = () => {
               <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-orange-600 transition-all duration-300 group-hover:w-full"></span>
             </Link>
           </li>
-          <li ref={servicesRef} className="relative group">
+          <li ref={desktopServicesRef} className="relative group">
             <button
-              onClick={toggleServices}
+              onClick={toggleDesktopServices}
               className="flex items-center hover:text-orange-600 transition-colors duration-200"
             >
               Services
@@ -75,7 +92,7 @@ const Header = () => {
             </button>
             <div
               className={`absolute top-full left-0 mt-2 w-48 uppercase bg-white shadow-xl rounded-lg transition-all duration-300 z-10 ${
-                isServicesOpen ? "opacity-100 visible" : "opacity-0 invisible"
+                isDesktopServicesOpen ? "opacity-100 visible" : "opacity-0 invisible"
               }`}
             >
               {services.map((service, index) => (
@@ -83,13 +100,9 @@ const Header = () => {
                   key={service.slug}
                   to={`/services/${service.slug}`}
                   className={`block px-4 py-3 text-sm hover:text-orange-600 ${
-                    index === 0
-                      ? "rounded-t-lg"
-                      : index === services.length - 1
-                      ? "rounded-b-lg"
-                      : ""
+                    index === 0 ? "rounded-t-lg" : index === services.length - 1 ? "rounded-b-lg" : ""
                   }`}
-                  onClick={() => setIsServicesOpen(false)}
+                  onClick={() => setIsDesktopServicesOpen(false)}
                 >
                   {service.title}
                 </Link>
@@ -105,7 +118,7 @@ const Header = () => {
           <li>
             <Link to="/contact" className="relative group">
               Contact
-              <span className="absolute left-0 bottom-0 w-0 h-0.4 bg-orange-600 transition-all duration-300 group-hover:w-full"></span>
+              <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-orange-600 transition-all duration-300 group-hover:w-full"></span>
             </Link>
           </li>
         </ul>
@@ -143,7 +156,7 @@ const Header = () => {
           className={`fixed top-0 left-0 h-full w-72 bg-white shadow-2xl transform ${
             isSidebarOpen ? "translate-x-0" : "-translate-x-full"
           } transition-transform duration-300 ease-in-out z-50`}
-          onClick={(e) => e.stopPropagation()} // Prevent sidebar clicks from reaching overlay
+          onClick={(e) => e.stopPropagation()}
         >
           <div className="flex justify-between items-center px-6 py-3">
             <div className="w-28">
@@ -177,7 +190,7 @@ const Header = () => {
             </li>
             <li>
               <button
-                onClick={toggleServices}
+                onClick={toggleMobileServices}
                 className="py-2 hover:text-orange-600 w-full text-left flex items-center transition-colors duration-200"
               >
                 Services
@@ -191,11 +204,11 @@ const Header = () => {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth="2"
-                    d={isServicesOpen ? "M5 15l7-7 7 7" : "M19 9l-7 7-7-7"}
+                    d={isMobileServicesOpen ? "M5 15l7-7 7 7" : "M19 9l-7 7-7-7"}
                   />
                 </svg>
               </button>
-              {isServicesOpen && (
+              {isMobileServicesOpen && (
                 <div className="pl-4 space-y-2 mt-2">
                   {services.map((service) => (
                     <Link
