@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from "react";
 
 const BookAppointment = () => {
@@ -11,6 +10,7 @@ const BookAppointment = () => {
     photos: null,
   });
   const [isVisible, setIsVisible] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const sectionRef = useRef(null);
 
   const services = [
@@ -57,14 +57,17 @@ const BookAppointment = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
+
     // Validate UK phone number
     const phoneRegex = /^\+44[0-9]{10}$/;
     if (!phoneRegex.test(form.phone)) {
       alert(
         "Please enter a valid UK phone number starting with +44 (e.g., +447123456789)"
       );
+      setIsSubmitting(false);
       return;
     }
 
@@ -72,24 +75,58 @@ const BookAppointment = () => {
     const postalCodeRegex = /^[A-Z]{1,2}[0-9][A-Z0-9]? ?[0-9][A-Z]{2}$/i;
     if (!postalCodeRegex.test(form.postalCode)) {
       alert("Please enter a valid UK postal code (e.g., SW1A 1AA, EC1Y 8SY)");
+      setIsSubmitting(false);
       return;
     }
 
-    // Form submission logic
-    console.log("Form submitted:", form);
-    alert("Appointment request submitted!");
-    setForm({
-      name: "",
-      phone: "",
-      email: "",
-      postalCode: "",
-      service: "",
-      photos: null,
-    });
+    // Prepare form data for submission
+    const formData = new FormData();
+    formData.append("name", form.name);
+    formData.append("phone", form.phone);
+    formData.append("email", form.email);
+    formData.append("postalCode", form.postalCode);
+    formData.append("service", form.service);
+
+    if (form.photos) {
+      for (let i = 0; i < form.photos.length; i++) {
+        formData.append("photos", form.photos[i]);
+      }
+    }
+
+    try {
+      const response = await fetch("http://localhost:5000/api/appointments", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to submit appointment");
+      }
+
+      alert("Appointment request submitted successfully!");
+      setForm({
+        name: "",
+        phone: "",
+        email: "",
+        postalCode: "",
+        service: "",
+        photos: null,
+      });
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert(`Failed to submit appointment: ${error.message}`);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <div id="book" className="bg-gradient-to-br mt-12 from-green-500 to-teal-600 min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-10">
+    <div
+      id="book"
+      className="bg-gradient-to-br mt-12 from-green-500 to-teal-600 min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-10"
+    >
       <div
         ref={sectionRef}
         className={`w-full max-w-lg bg-white rounded-xl shadow-2xl p-8 space-y-8 transform transition-all duration-500 ease-out ${
@@ -121,6 +158,7 @@ const BookAppointment = () => {
                 onChange={handleChange}
                 className="block w-full px-4 py-3 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-green-400"
                 required
+                disabled={isSubmitting}
               />
             </div>
 
@@ -138,6 +176,7 @@ const BookAppointment = () => {
                 required
                 pattern="\+44[0-9]{10}"
                 title="Please enter a valid UK phone number starting with +44 (e.g., +447123456789)"
+                disabled={isSubmitting}
               />
             </div>
 
@@ -152,6 +191,7 @@ const BookAppointment = () => {
                 value={form.email}
                 onChange={handleChange}
                 className="block w-full px-4 py-3 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-green-400"
+                disabled={isSubmitting}
               />
             </div>
 
@@ -169,6 +209,7 @@ const BookAppointment = () => {
                 required
                 pattern="[A-Z]{1,2}[0-9][A-Z0-9]? ?[0-9][A-Z]{2}"
                 title="Please enter a valid UK postal code (e.g., SW1A 1AA, EC1Y 8SY)"
+                disabled={isSubmitting}
               />
             </div>
           </div>
@@ -188,6 +229,7 @@ const BookAppointment = () => {
               multiple
               onChange={handleChange}
               className="block w-full px-4 py-3 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-green-400"
+              disabled={isSubmitting}
             />
           </div>
 
@@ -205,6 +247,7 @@ const BookAppointment = () => {
               onChange={handleChange}
               className="block w-full px-4 py-3 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-green-400"
               required
+              disabled={isSubmitting}
             >
               <option value="">-- Select a service --</option>
               {services.map((service, idx) => (
@@ -217,11 +260,12 @@ const BookAppointment = () => {
 
           <button
             type="submit"
-            className={`mt-8 w-full py-3 px-4 bg-green-500 text-white text-lg font-semibold rounded-md shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400 transform transition-all duration-200  ${
+            className={`mt-8 w-full py-3 px-4 bg-green-500 text-white text-lg font-semibold rounded-md shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400 transform transition-all duration-200 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-            }`}
+            } ${isSubmitting ? "opacity-50 cursor-not-allowed" : ""}`}
+            disabled={isSubmitting}
           >
-            Submit Appointment Request
+            {isSubmitting ? "Submitting..." : "Submit Appointment Request"}
           </button>
         </form>
       </div>
