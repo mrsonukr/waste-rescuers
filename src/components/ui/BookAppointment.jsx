@@ -94,7 +94,7 @@ const BookAppointment = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/appointments", {
+      const response = await fetch("https://quarrelsome-wendye-mrsonukr-1c5781f4.koyeb.app/api/appointments", {
         method: "POST",
         body: formData,
       });
