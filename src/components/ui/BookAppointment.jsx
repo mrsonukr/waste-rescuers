@@ -7,33 +7,42 @@ const BookAppointment = () => {
     email: "",
     postalCode: "",
     service: "",
-    photos: null,
   });
+  const [services, setServices] = useState([]);
   const [isVisible, setIsVisible] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const sectionRef = useRef(null);
 
-  const services = [
-    "Household Waste",
-    "Commercial Waste",
-    "Garden Clearance",
-    "Construction Waste",
-    "Electronic Waste",
-  ];
+  // Fetch services from backend
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const response = await fetch("https://quarrelsome-wendye-mrsonukr-1c5781f4.koyeb.app/api/services");
+        if (!response.ok) {
+          throw new Error("Failed to fetch services");
+        }
+        const data = await response.json();
+        setServices(data);
+      } catch (error) {
+        console.error("Error fetching services:", error);
+        alert("Failed to load services. Please try again later.");
+      }
+    };
+    fetchServices();
+  }, []);
 
+  // Intersection observer for animation
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
           if (sectionRef.current) {
-            observer.unobserve(sectionRef.current); // Stop observing once visible
+            observer.unobserve(sectionRef.current);
           }
         }
       },
-      {
-        threshold: 0.1, // Trigger when 10% of the section is visible
-      }
+      { threshold: 0.1 }
     );
 
     const currentRef = sectionRef.current;
@@ -45,15 +54,15 @@ const BookAppointment = () => {
       if (currentRef) {
         observer.unobserve(currentRef);
       }
-      observer.disconnect(); // Prevent memory leaks
+      observer.disconnect();
     };
   }, []);
 
   const handleChange = (e) => {
-    const { name, value, files } = e.target;
+    const { name, value } = e.target;
     setForm({
       ...form,
-      [name]: files ? files : value,
+      [name]: value,
     });
   };
 
@@ -64,9 +73,7 @@ const BookAppointment = () => {
     // Validate UK phone number
     const phoneRegex = /^\+44[0-9]{10}$/;
     if (!phoneRegex.test(form.phone)) {
-      alert(
-        "Please enter a valid UK phone number starting with +44 (e.g., +447123456789)"
-      );
+      alert("Please enter a valid UK phone number starting with +44 (e.g., +447123456789)");
       setIsSubmitting(false);
       return;
     }
@@ -79,24 +86,11 @@ const BookAppointment = () => {
       return;
     }
 
-    // Prepare form data for submission
-    const formData = new FormData();
-    formData.append("name", form.name);
-    formData.append("phone", form.phone);
-    formData.append("email", form.email);
-    formData.append("postalCode", form.postalCode);
-    formData.append("service", form.service);
-
-    if (form.photos) {
-      for (let i = 0; i < form.photos.length; i++) {
-        formData.append("photos", form.photos[i]);
-      }
-    }
-
     try {
       const response = await fetch("https://quarrelsome-wendye-mrsonukr-1c5781f4.koyeb.app/api/appointments", {
         method: "POST",
-        body: formData,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
       });
 
       const data = await response.json();
@@ -112,7 +106,6 @@ const BookAppointment = () => {
         email: "",
         postalCode: "",
         service: "",
-        photos: null,
       });
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -215,25 +208,6 @@ const BookAppointment = () => {
           </div>
 
           <div
-            className={`mt-6 transform transition-all duration-500 ease-out delay-300 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-            }`}
-          >
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Upload Photos for Quotation (Optional)
-            </label>
-            <input
-              type="file"
-              name="photos"
-              accept="image/*"
-              multiple
-              onChange={handleChange}
-              className="block w-full px-4 py-3 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-green-400"
-              disabled={isSubmitting}
-            />
-          </div>
-
-          <div
             className={`mt-6 transform transition-all duration-500 ease-out delay-400 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
             }`}
@@ -250,9 +224,9 @@ const BookAppointment = () => {
               disabled={isSubmitting}
             >
               <option value="">-- Select a service --</option>
-              {services.map((service, idx) => (
-                <option key={idx} value={service}>
-                  {service}
+              {services.map((service) => (
+                <option key={service._id} value={service.name}>
+                  {service.name}
                 </option>
               ))}
             </select>
