@@ -40,6 +40,7 @@ const Footer = () => {
 
   return (
     <footer
+      id="footer"
       ref={sectionRef}
       itemscope="itemscope"
       itemType="https://schema.org/WPFooter"
@@ -166,12 +167,12 @@ const Footer = () => {
           <p className="text-white text-xs sm:text-sm mt-2">
             <strong>Quick Removals – Fast & Affordable</strong>
           </p>
-          <Link
-            to="/book"
+          <a
+            href="/#book"
             className="inline-block mt-2 bg-green-400 text-white text-xs sm:text-sm font-semibold py-3 sm:py-4 px-6 sm:px-8 border-b-4 border-[#1E1E1E] hover:bg-orange-500 hover:border-green-400 transition"
           >
             Make Appointment
-          </Link>
+          </a>
         </div>
 
         {/* Payment and Registration */}
@@ -222,11 +223,9 @@ const Footer = () => {
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         }`}
       >
-        <p className="text-white text-xs sm:text-sm">
-          Waste Pickup & Disposal Services.
-        </p>
+        <p className="text-white text-xs sm:text-sm">Waste Rescuers LTD.</p>
         <p className="text-white text-xs sm:text-sm mt-2 sm:mt-0">
-          Copyright © 2025. All rights reserved.
+          Copyright © {new Date().getFullYear()}. All rights reserved.
         </p>
       </div>
     </footer>

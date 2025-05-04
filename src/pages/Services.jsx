@@ -58,15 +58,18 @@ const Services = () => {
   ];
 
   // Find the service based on the slug from the URL
-  const selectedService = services.find((service) => service.slug === serviceSlug) || {
+  const selectedService = services.find(
+    (service) => service.slug === serviceSlug
+  ) || {
     title: "Welcome to Our Services",
-    description: "We offer a wide range of services to cater to your needs. Explore more below.",
+    description:
+      "We offer a wide range of services to cater to your needs. Explore more below.",
   };
 
   return (
     <div>
       <Header />
-      <ServiceHero 
+      <ServiceHero
         title={selectedService.title}
         description={selectedService.description}
       />
@@ -86,9 +89,12 @@ const Services = () => {
 
         {/* Button Section */}
         <div className="w-full md:w-auto text-left md:text-right">
-          <button className="uppercase bg-orange-500 py-4 font-semibold px-5 text-white rounded-xl hover:bg-orange-600 transition duration-200 text-xs sm:text-sm w-full md:w-auto">
+          <a
+            href="/#book"
+            className="uppercase bg-orange-500 py-4 font-semibold px-5 text-white rounded-xl hover:bg-orange-600 transition duration-200 text-xs sm:text-sm w-full md:w-auto text-center block"
+          >
             Book An Appointment
-          </button>
+          </a>
         </div>
       </div>
 

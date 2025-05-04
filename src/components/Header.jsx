@@ -110,16 +110,16 @@ const Header = () => {
             </div>
           </li>
           <li>
-            <Link to="/about" className="relative group">
+            <a href="/#about" className="relative group">
               About
               <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-orange-600 transition-all duration-300 group-hover:w-full"></span>
-            </Link>
+            </a>
           </li>
           <li>
-            <Link to="/contact" className="relative group">
+            <a href="/#footer" className="relative group">
               Contact
               <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-orange-600 transition-all duration-300 group-hover:w-full"></span>
-            </Link>
+            </a>
           </li>
         </ul>
       </nav>
@@ -224,22 +224,22 @@ const Header = () => {
               )}
             </li>
             <li>
-              <Link
-                to="/about"
+              <a
+                href="/#about"
                 className="block py-2 hover:text-orange-600 transition-colors duration-200"
                 onClick={toggleSidebar}
               >
                 About
-              </Link>
+              </a>
             </li>
             <li>
-              <Link
-                to="/contact"
+              <a
+                href="/#footer"
                 className="block py-2 hover:text-orange-600 transition-colors duration-200"
                 onClick={toggleSidebar}
               >
                 Contact
-              </Link>
+              </a>
             </li>
           </ul>
         </div>
