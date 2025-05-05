@@ -95,7 +95,7 @@ const ContactCard = () => {
           }`}
         >
           <a
-            href="tel:+917061543815"
+            href="tel:+447749991862"
             className="inline-flex items-center text-white border sm:border-white px-4 py-2 rounded-full hover:bg-white hover:text-green-500 transition-colors duration-200"
           >
             Call to Book

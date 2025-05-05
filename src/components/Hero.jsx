@@ -97,7 +97,7 @@ const Hero = () => {
               Book Now
             </a>
             <a
-              href="tel:+917061543815"
+              href="tel:+447749991862"
               className="uppercase bg-orange-500 py-3 px-6 rounded-full hover:bg-orange-600 transition duration-200 text-sm sm:text-base"
             >
               Call Now For Booking
