@@ -61,7 +61,7 @@ const Hero = () => {
                 : "opacity-0 translate-y-10"
             }`}
           >
-            <span className="text-orange-300">Quick Removals Fast</span> -
+            <span className="text-orange-300">Waste Rescuers Fast</span> -
             Affordable Waste Removal Services
           </h1>
           <p
