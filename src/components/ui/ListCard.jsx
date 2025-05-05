@@ -52,7 +52,7 @@ const ListCard = () => {
             Our Services
           </h3>
           <p className="text-gray-600">
-            Quick Removals is a trusted waste removal company in London, offering
+            Waste Rescuers is a trusted waste removal company in London, offering
             fast, eco-friendly solutions for household, commercial, and
             construction waste.
           </p>
