@@ -54,7 +54,7 @@ const AboutTab = () => {
             Trusted Experience in Waste Removal Services
           </p>
           <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
-            For more than two decades, <strong>Quick Removals</strong> has been
+            For more than two decades, <strong>Waste Rescuers</strong> has been
             dedicated to keeping London clean, efficient, and clutter-free.
             Specializing in reliable and eco-friendly waste removal services, we
             pride ourselves on delivering top-notch solutions tailored to homes,
