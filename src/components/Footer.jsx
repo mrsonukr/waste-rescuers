@@ -223,7 +223,7 @@ const Footer = () => {
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         }`}
       >
-        <p className="text-white text-xs sm:text-sm">Waste Rescuers LTD.</p>
+        <p className="text-white text-xs sm:text-sm">Waste Rescuers.</p>
         <p className="text-white text-xs sm:text-sm mt-2 sm:mt-0">
           Copyright © {new Date().getFullYear()}. All rights reserved.
         </p>
