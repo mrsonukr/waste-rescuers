@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import logo from "/assets/logo.svg";
+import logo from "/assets/logo.webp";
 
 const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -60,7 +60,7 @@ const Header = () => {
     <header className="bg-white text-gray-900 relative z-50">
       {/* Desktop Navigation */}
       <nav className="hidden md:flex container mx-auto px-6 py-3 items-center justify-between">
-        <div className="w-28">
+        <div className="w-20">
           <img src={logo} alt="Logo" />
         </div>
         <ul className="flex space-x-8 text-lg font-medium">
@@ -127,7 +127,7 @@ const Header = () => {
       {/* Mobile Navigation */}
       <div className="md:hidden">
         <div className="flex justify-between items-center px-6 py-3">
-          <div className="w-28">
+          <div className="w-20">
             <img src={logo} alt="Logo" />
           </div>
           <button onClick={toggleSidebar} className="focus:outline-none">
@@ -159,7 +159,7 @@ const Header = () => {
           onClick={(e) => e.stopPropagation()}
         >
           <div className="flex justify-between items-center px-6 py-3">
-            <div className="w-28">
+            <div className="w-20">
               <img src={logo} alt="Logo" />
             </div>
             <button onClick={toggleSidebar} className="focus:outline-none">

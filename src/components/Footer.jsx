@@ -6,7 +6,7 @@ import {
   FaWhatsapp,
   FaClock,
 } from "react-icons/fa";
-import logo from "/assets/logo.svg";
+import logo from "/assets/logo.webp";
 
 const Footer = () => {
   const [isVisible, setIsVisible] = useState(false);
