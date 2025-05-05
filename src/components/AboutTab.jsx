@@ -67,7 +67,7 @@ const AboutTab = () => {
             professionalism and a commitment to sustainability.
             <br />
             <br />
-            At Quick Removals, we’re not just removing waste—we’re creating
+            At Waste Rescuers, we’re not just removing waste—we’re creating
             cleaner, greener spaces for Londoners.{" "}
             <strong>Trust us to get the job done right!</strong>
           </p>
