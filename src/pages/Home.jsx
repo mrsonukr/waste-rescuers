@@ -32,9 +32,9 @@ const Home = () => {
     },
     {
       icon: "/assets/mattress.png",
-      title: "Soffaa Removal",
+      title: "Sofa Removal",
       description:
-        "Hassle-free soffaa disposal with professional and responsible recycling.",
+        "Hassle-free sofa disposal with professional and responsible recycling.",
     },
     {
       icon: "/assets/garden.png",

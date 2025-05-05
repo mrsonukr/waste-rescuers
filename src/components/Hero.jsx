@@ -71,6 +71,16 @@ const Hero = () => {
                 : "opacity-0 translate-y-10"
             }`}
           >
+            Upper Tier Carrier Registration from the Environment Agency
+            CBDU571009
+          </p>
+          <p
+            className={`text-base sm:text-lg md:text-xl max-w-2xl mx-auto capitalize mb-6 transform transition-all duration-700 ease-out delay-100 ${
+              isLoaded
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-10"
+            }`}
+          >
             London's best waste removal company - trusted by 500+ customers
           </p>
           <div
@@ -80,7 +90,10 @@ const Hero = () => {
                 : "opacity-0 translate-y-10"
             }`}
           >
-            <a className="uppercase bg-green-500 py-3 px-6 rounded-full hover:bg-green-600 transition duration-200 text-sm sm:text-base" href="#book">
+            <a
+              className="uppercase bg-green-500 py-3 px-6 rounded-full hover:bg-green-600 transition duration-200 text-sm sm:text-base"
+              href="#book"
+            >
               Book Now
             </a>
             <a
