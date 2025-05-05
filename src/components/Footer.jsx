@@ -75,16 +75,16 @@ const Footer = () => {
             <li className="flex items-start justify-center sm:justify-start">
               <FaPhoneAlt className="text-green-400 mr-2 mt-1" size={16} />
               <a
-                href="tel:+917061543815"
+                href="tel:+447749991862"
                 className="text-white text-xs sm:text-sm"
               >
-                +91-7061543815
+                +44-7749991862
               </a>
             </li>
             <li className="flex items-start justify-center sm:justify-start">
               <FaWhatsapp className="text-green-400 mr-2 mt-1" size={16} />
               <span className="text-white text-xs sm:text-sm">
-                +91-7061543815
+                +91-7749991862
               </span>
             </li>
           </ul>

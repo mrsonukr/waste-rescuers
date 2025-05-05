@@ -23,9 +23,9 @@ const Services = () => {
     {
       slug: "mattress-removal",
       icon: "/assets/mattress.png",
-      title: "Mattress Removal",
+      title: "Soffaa Removal",
       description:
-        "Hassle-free mattress disposal with professional and responsible recycling.",
+        "Hassle-free soffaa disposal with professional and responsible recycling.",
     },
     {
       slug: "man-and-van",

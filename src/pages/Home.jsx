@@ -19,10 +19,10 @@ const Home = () => {
         "Fast and eco-friendly waste removal for households, businesses, and construction sites.",
     },
     {
-      icon: "/assets/mattress.png",
-      title: "Mattress Removal",
+      icon: "/assets/rubbish.png",
+      title: "Rubbish Removal",
       description:
-        "Hassle-free mattress disposal with professional and responsible recycling.",
+        "Clear out clutter with our comprehensive rubbish removal solutions.",
     },
     {
       icon: "/assets/man-van.png",
@@ -31,10 +31,10 @@ const Home = () => {
         "Reliable man and van services for quick and efficient waste transport.",
     },
     {
-      icon: "/assets/rubbish.png",
-      title: "Rubbish Removal",
+      icon: "/assets/mattress.png",
+      title: "Soffaa Removal",
       description:
-        "Clear out clutter with our comprehensive rubbish removal solutions.",
+        "Hassle-free soffaa disposal with professional and responsible recycling.",
     },
     {
       icon: "/assets/garden.png",
@@ -44,9 +44,9 @@ const Home = () => {
     },
     {
       icon: "/assets/furniture.png",
-      title: "Furniture Removal",
+      title: "Furniture Disposal",
       description:
-        "Professional furniture removal for homes and offices, big or small.",
+        "Professional furniture desposal for homes and offices, big or small.",
     },
   ];
 
