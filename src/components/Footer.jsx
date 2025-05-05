@@ -165,7 +165,7 @@ const Footer = () => {
             </li>
           </ul>
           <p className="text-white text-xs sm:text-sm mt-2">
-            <strong>Quick Removals – Fast & Affordable</strong>
+            <strong>Quick , Fast & Affordable</strong>
           </p>
           <a
             href="/#book"
