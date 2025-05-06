@@ -68,14 +68,30 @@ const BookAppointment = () => {
     return cleaned;
   };
 
-  const formatPhoneNumber = (value) => {
-    // Ensure +44 prefix
+  const formatName = (value) => {
+    // Capitalize first letter of each word
+    return value
+      .toLowerCase()
+      .replace(/(^|\s)\w/g, (letter) => letter.toUpperCase());
+  };
+
+  const handlePhoneChange = (e) => {
+    let value = e.target.value;
+    // Remove all non-digits except +
     let cleaned = value.replace(/[^\d+]/g, "");
-    if (!cleaned.startsWith("+44")) {
-      cleaned = "+44" + cleaned.replace(/^\+44/, "");
+    
+    // If user tries to delete +44, prevent it
+    if (!cleaned.startsWith("+44") || cleaned.length < 3) {
+      cleaned = "+44";
     }
+    
     // Limit to +44 followed by 10 digits
-    return cleaned.slice(0, 13);
+    cleaned = cleaned.slice(0, 13);
+    
+    setForm({
+      ...form,
+      phone: cleaned,
+    });
   };
 
   const handleChange = (e) => {
@@ -84,8 +100,8 @@ const BookAppointment = () => {
 
     if (name === "postalCode") {
       formattedValue = formatPostalCode(value);
-    } else if (name === "phone") {
-      formattedValue = formatPhoneNumber(value);
+    } else if (name === "name") {
+      formattedValue = formatName(value);
     }
 
     setForm({
@@ -192,7 +208,7 @@ const BookAppointment = () => {
                 name="phone"
                 placeholder="+447123456789"
                 value={form.phone}
-                onChange={handleChange}
+                onChange={handlePhoneChange}
                 className="block w-full px-4 py-3 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-green-400"
                 required
                 pattern="\+44[0-9]{10}"
