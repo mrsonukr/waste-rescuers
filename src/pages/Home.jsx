@@ -9,6 +9,7 @@ import AboutTab from "../components/AboutTab";
 import Customer from "../components/ui/Customer";
 import Faq from "../components/ui/Faq";
 import BookAppointment from "../components/ui/BookAppointment";
+import WhatsAppButton from "../components/ui/WhatsAppButton";
 
 const Home = () => {
   const services = [
@@ -100,6 +101,7 @@ const Home = () => {
       <Faq />
       <BookAppointment />
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 };
