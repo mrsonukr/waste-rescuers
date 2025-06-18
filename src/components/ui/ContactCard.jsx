@@ -9,7 +9,9 @@ const ContactCard = () => {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          observer.unobserve(cardRef.current);
+          if (cardRef.current) {
+            observer.unobserve(cardRef.current);
+          }
         }
       },
       {
@@ -17,11 +19,17 @@ const ContactCard = () => {
       }
     );
 
-    if (cardRef.current) {
-      observer.observe(cardRef.current);
+    const currentRef = cardRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
-    return () => {};
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+      observer.disconnect();
+    };
   }, []);
 
   return (
@@ -42,9 +50,9 @@ const ContactCard = () => {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
-          "Transform your space today—book your appointment now! 🗓️ Enjoy fast,
-          professional service that's tailored to you. No hassle, just one
-          simple click!" Would you like a more formal tone or a playful style?
+          Transform your space today—book your appointment now! 🗓️ Enjoy fast,
+          professional service that&apos;s tailored to you. No hassle, just one
+          simple click!
         </p>
         <div
           className={`space-y-4 transform transition-all duration-500 ease-out delay-200 ${
@@ -54,7 +62,7 @@ const ContactCard = () => {
           {/* Email */}
           <div className="flex items-center justify-center gap-2">
             <svg
-              className="w-5 h-5"
+              className="w-5 h-5 flex-shrink-0"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -67,14 +75,15 @@ const ContactCard = () => {
                 d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
               />
             </svg>
-
-            <a href="mailto:wasterescuers@gmail.com">wasterescuers@gmail.com</a>
+            <a href="mailto:wasterescuers@gmail.com" className="break-all">
+              wasterescuers@gmail.com
+            </a>
           </div>
 
           {/* Phone */}
           <div className="flex items-center justify-center gap-2">
             <svg
-              className="w-5 h-5"
+              className="w-5 h-5 flex-shrink-0"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -96,7 +105,7 @@ const ContactCard = () => {
         >
           <a
             href="tel:+447749991862"
-            className="inline-flex items-center text-white border sm:border-white px-4 py-2 rounded-full hover:bg-white hover:text-green-500 transition-colors duration-200"
+            className="inline-flex items-center text-white border border-white px-4 py-2 rounded-full hover:bg-white hover:text-green-500 transition-colors duration-200"
           >
             Call to Book
           </a>

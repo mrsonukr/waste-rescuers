@@ -33,7 +33,7 @@ const AboutTab = () => {
   }, []);
 
   return (
-    <div
+    <section
       id="about"
       ref={sectionRef}
       className="flex items-center mt-10 px-4 sm:px-6 md:px-12"
@@ -48,64 +48,71 @@ const AboutTab = () => {
           <p className="uppercase text-sm sm:text-base font-semibold text-gray-800">
             About Us
           </p>
-          <p className="text-xl sm:text-2xl text-green-500 font-bold">
+          <h2 className="text-xl sm:text-2xl text-green-500 font-bold">
             Your Trusted Partner in Cleaning and Waste Removal
-          </p>
-          <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
-            Welcome to <strong>Waste Rescuers</strong>, your trusted partner for
-            professional house and garden cleaning and waste removal across the
-            UK. We understand how overwhelming clutter, garden waste, or
-            post-renovation debris can be—and we're here to make your life
-            easier with fast, friendly, and reliable service.
+          </h2>
+          <div className="text-gray-700 text-sm sm:text-base leading-relaxed">
+            <p>
+              Welcome to <strong>Waste Rescuers</strong>, your trusted partner for
+              professional house and garden cleaning and waste removal across the
+              UK. We understand how overwhelming clutter, garden waste, or
+              post-renovation debris can be—and we&apos;re here to make your life
+              easier with fast, friendly, and reliable service.
+            </p>
             <br />
+            <p>
+              Founded with a passion for helping people reclaim their spaces,
+              Waste Rescuers is built on the belief that a clean environment leads
+              to a clearer mind. Whether you need a full house clearance, garden
+              tidy-up, or just a few bulky items removed, our expert team handles
+              every job with care, efficiency, and a commitment to sustainability.
+            </p>
             <br />
-            Founded with a passion for helping people reclaim their spaces,
-            Waste Rescuers is built on the belief that a clean environment leads
-            to a clearer mind. Whether you need a full house clearance, garden
-            tidy-up, or just a few bulky items removed, our expert team handles
-            every job with care, efficiency, and a commitment to sustainability.
+            <div>
+              <strong>What We Do:</strong>
+              <ul className="list-disc list-inside ml-4 mt-2 space-y-1">
+                <li>
+                  <strong>House Clearances:</strong> From attic to cellar, we
+                  remove unwanted items, furniture, and rubbish, leaving your home
+                  spotless.
+                </li>
+                <li>
+                  <strong>Garden Clean-ups:</strong> We clear green waste, old
+                  tools, sheds, and general garden debris to restore your outdoor
+                  space.
+                </li>
+                <li>
+                  <strong>Eco-Friendly Disposal:</strong> We prioritise recycling
+                  and proper waste management to reduce landfill impact.
+                </li>
+                <li>
+                  <strong>One-Off or Regular Services:</strong> Tailored to suit
+                  your schedule and needs.
+                </li>
+              </ul>
+            </div>
             <br />
+            <div>
+              <strong>Why Choose Us?</strong>
+              <ul className="list-disc list-inside ml-4 mt-2 space-y-1">
+                <li>Fully licensed and insured waste carriers</li>
+                <li>Experienced, polite, and uniformed staff</li>
+                <li>Transparent pricing with no hidden fees</li>
+                <li>Quick response times and flexible bookings</li>
+              </ul>
+            </div>
             <br />
-            <strong>What We Do:</strong>
-            <ul className="list-disc list-inside ml-4 mt-2">
-              <li>
-                <strong>House Clearances:</strong> From attic to cellar, we
-                remove unwanted items, furniture, and rubbish, leaving your home
-                spotless.
-              </li>
-              <li>
-                <strong>Garden Clean-ups:</strong> We clear green waste, old
-                tools, sheds, and general garden debris to restore your outdoor
-                space.
-              </li>
-              <li>
-                <strong>Eco-Friendly Disposal:</strong> We prioritise recycling
-                and proper waste management to reduce landfill impact.
-              </li>
-              <li>
-                <strong>One-Off or Regular Services:</strong> Tailored to suit
-                your schedule and needs.
-              </li>
-            </ul>
+            <p>
+              At Waste Rescuers, we don&apos;t just remove waste—we rescue spaces and
+              give them back their purpose. Our mission is to make rubbish removal
+              easy, responsible, and hassle-free for every customer we serve.
+            </p>
             <br />
-            <strong>Why Choose Us?</strong>
-            <ul className="list-disc list-inside ml-4 mt-2">
-              <li>Fully licensed and insured waste carriers</li>
-              <li>Experienced, polite, and uniformed staff</li>
-              <li>Transparent pricing with no hidden fees</li>
-              <li>Quick response times and flexible bookings</li>
-            </ul>
-            <br />
-            At Waste Rescuers, we don’t just remove waste—we rescue spaces and
-            give them back their purpose. Our mission is to make rubbish removal
-            easy, responsible, and hassle-free for every customer we serve.
-            <br />
-            <br />
-            <span className="text-sm text-gray-600 italic">
+            <p className="text-sm text-gray-600 italic">
               Waste Rescuers is an Upper Tier Carrier registered with the
               Environment Agency (CBDU571009), Company Number: 16260822
-            </span>
-          </p>
+            </p>
+          </div>
         </div>
 
         {/* Right Content */}
@@ -117,13 +124,16 @@ const AboutTab = () => {
           <div className="w-full rounded-xl overflow-hidden shadow-lg">
             <img
               src="/assets/sofa-holder.webp"
-              alt="Waste removal in progress"
+              alt="Professional waste removal service in progress showing team removing furniture"
               className="w-full h-auto object-cover"
+              width="600"
+              height="400"
+              loading="lazy"
             />
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

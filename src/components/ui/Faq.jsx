@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useState, useEffect, useRef } from "react";
 
 const faqData = [
@@ -40,12 +38,12 @@ const Faq = () => {
         if (entry.isIntersecting) {
           setIsVisible(true);
           if (sectionRef.current) {
-            observer.unobserve(sectionRef.current); // Stop observing once visible
+            observer.unobserve(sectionRef.current);
           }
         }
       },
       {
-        threshold: 0.1, // Trigger when 10% of the section is visible
+        threshold: 0.1,
       }
     );
 
@@ -58,7 +56,7 @@ const Faq = () => {
       if (currentRef) {
         observer.unobserve(currentRef);
       }
-      observer.disconnect(); // Prevent memory leaks
+      observer.disconnect();
     };
   }, []);
 
@@ -83,16 +81,18 @@ const Faq = () => {
             <button
               onClick={() => toggle(index)}
               className="w-full text-left px-6 py-4 bg-white hover:bg-gray-50 transition font-medium flex justify-between items-center"
+              aria-expanded={openIndex === index}
+              aria-controls={`faq-answer-${index}`}
             >
-              {item.question}
-              <span className="text-xl">{openIndex === index ? "−" : "+"}</span>
+              <span className="pr-4">{item.question}</span>
+              <span className="text-xl flex-shrink-0" aria-hidden="true">
+                {openIndex === index ? "−" : "+"}
+              </span>
             </button>
             {openIndex === index && (
               <div
-                className="px-6 pb-4 text-gray-700 text-sm leading-relaxed transition-all duration-300 ease-out transform origin-top"
-                style={{
-                  animation: openIndex === index ? "slideDown 300ms ease-out" : "none",
-                }}
+                id={`faq-answer-${index}`}
+                className="px-6 pb-4 text-gray-700 text-sm leading-relaxed transition-all duration-300 ease-out transform origin-top animate-slideDown"
               >
                 {item.answer}
               </div>
@@ -110,6 +110,9 @@ const Faq = () => {
             opacity: 1;
             transform: scaleY(1);
           }
+        }
+        .animate-slideDown {
+          animation: slideDown 300ms ease-out;
         }
       `}</style>
     </div>

@@ -4,11 +4,13 @@ import Home from "./pages/Home";
 import Booking from "./pages/Booking";
 import NotFound from "./pages/NotFound";
 import Services from "./pages/Services";
+import ScrollToTop from "./components/ScrollToTop";
 
 const Routing = () => {
   return (
     <div>
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/book" element={<Booking />} />

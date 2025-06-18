@@ -20,19 +20,26 @@ const ListCard = () => {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          observer.unobserve(cardRef.current); // Stop observing once visible
+          if (cardRef.current) {
+            observer.unobserve(cardRef.current);
+          }
         }
       },
       {
-        threshold: 0.1, // Trigger when 10% of the component is visible
+        threshold: 0.1,
       }
     );
 
-    if (cardRef.current) {
-      observer.observe(cardRef.current);
+    const currentRef = cardRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+      observer.disconnect();
     };
   }, []);
 
@@ -90,7 +97,7 @@ const ListCard = () => {
                 }`}
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
-                <CheckCircle className="text-green-500 w-5 h-5 mr-2" />
+                <CheckCircle className="text-green-500 w-5 h-5 mr-2 flex-shrink-0" />
                 {item}
               </li>
             ))}

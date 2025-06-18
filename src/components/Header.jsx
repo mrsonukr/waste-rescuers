@@ -1,67 +1,20 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "/assets/logo.webp";
 
 const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isDesktopServicesOpen, setIsDesktopServicesOpen] = useState(false);
-  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
-  const desktopServicesRef = useRef(null);
-
-  const services = [
-    { slug: "waste-removal", title: "Waste Removal" },
-    { slug: "mattress-removal", title: "Mattress Removal" },
-    { slug: "man-and-van", title: "Man and Van" },
-    { slug: "rubbish-removal", title: "Rubbish Removal" },
-    { slug: "garden-waste-removal", title: "Garden Waste Removal" },
-    { slug: "furniture-removal", title: "Furniture Removal" },
-  ];
 
   const toggleSidebar = () => {
-    console.log("toggleSidebar called, isSidebarOpen:", isSidebarOpen);
     setIsSidebarOpen(!isSidebarOpen);
-    if (isMobileServicesOpen) {
-      console.log("Closing mobile services dropdown");
-      setIsMobileServicesOpen(false);
-    }
   };
-
-  const toggleDesktopServices = () => {
-    console.log("toggleDesktopServices called, isDesktopServicesOpen:", isDesktopServicesOpen);
-    setIsDesktopServicesOpen(!isDesktopServicesOpen);
-  };
-
-  const toggleMobileServices = (event) => {
-    event.stopPropagation();
-    event.preventDefault(); // Added to rule out default behavior interference
-    console.log("toggleMobileServices called, current isMobileServicesOpen:", isMobileServicesOpen);
-    setIsMobileServicesOpen((prev) => {
-      const newState = !prev;
-      console.log("Setting isMobileServicesOpen to:", newState);
-      return newState;
-    });
-  };
-
-  // Close desktop dropdown when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (desktopServicesRef.current && !desktopServicesRef.current.contains(event.target)) {
-        console.log("Click outside desktop services, closing dropdown");
-        setIsDesktopServicesOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
 
   return (
-    <header className="bg-white text-gray-900 relative z-50">
+    <header className="bg-white text-gray-900 relative z-50 shadow-sm">
       {/* Desktop Navigation */}
       <nav className="hidden md:flex container mx-auto px-6 py-3 items-center justify-between">
         <div className="w-20">
-          <img src={logo} alt="Logo" />
+          <img src={logo} alt="Waste Rescuers Logo" width="80" height="65" loading="eager" />
         </div>
         <ul className="flex space-x-8 text-lg font-medium">
           <li>
@@ -70,44 +23,11 @@ const Header = () => {
               <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-orange-600 transition-all duration-300 group-hover:w-full"></span>
             </Link>
           </li>
-          <li ref={desktopServicesRef} className="relative group">
-            <button
-              onClick={toggleDesktopServices}
-              className="flex items-center hover:text-orange-600 transition-colors duration-200"
-            >
+          <li>
+            <Link to="/services" className="relative group">
               Services
-              <svg
-                className="w-5 h-5 ml-1"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
-            </button>
-            <div
-              className={`absolute top-full left-0 mt-2 w-48 uppercase bg-white shadow-xl rounded-lg transition-all duration-300 z-10 ${
-                isDesktopServicesOpen ? "opacity-100 visible" : "opacity-0 invisible"
-              }`}
-            >
-              {services.map((service, index) => (
-                <Link
-                  key={service.slug}
-                  to={`/services/${service.slug}`}
-                  className={`block px-4 py-3 text-sm hover:text-orange-600 ${
-                    index === 0 ? "rounded-t-lg" : index === services.length - 1 ? "rounded-b-lg" : ""
-                  }`}
-                  onClick={() => setIsDesktopServicesOpen(false)}
-                >
-                  {service.title}
-                </Link>
-              ))}
-            </div>
+              <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-orange-600 transition-all duration-300 group-hover:w-full"></span>
+            </Link>
           </li>
           <li>
             <a href="/#about" className="relative group">
@@ -127,12 +47,17 @@ const Header = () => {
       {/* Mobile Navigation */}
       <div className="md:hidden">
         <div className="flex justify-between items-center px-6 py-3">
-          <div className="w-20">
-            <img src={logo} alt="Logo" />
+          <div className="w-16">
+            <img src={logo} alt="Waste Rescuers Logo" width="64" height="52" loading="eager" />
           </div>
-          <button onClick={toggleSidebar} className="focus:outline-none">
+          <button 
+            onClick={toggleSidebar} 
+            className="focus:outline-none p-2"
+            aria-label="Toggle navigation menu"
+            aria-expanded={isSidebarOpen}
+          >
             <svg
-              className="w-7 h-7"
+              className="w-6 h-6"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -158,13 +83,17 @@ const Header = () => {
           } transition-transform duration-300 ease-in-out z-50`}
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="flex justify-between items-center px-6 py-3">
-            <div className="w-20">
-              <img src={logo} alt="Logo" />
+          <div className="flex justify-between items-center px-6 py-3 border-b">
+            <div className="w-16">
+              <img src={logo} alt="Waste Rescuers Logo" width="64" height="52" loading="eager" />
             </div>
-            <button onClick={toggleSidebar} className="focus:outline-none">
+            <button 
+              onClick={toggleSidebar} 
+              className="focus:outline-none p-1"
+              aria-label="Close navigation menu"
+            >
               <svg
-                className="w-9 h-9 bg-green-500 p-1 rounded-lg"
+                className="w-8 h-8 bg-green-500 p-1 rounded-lg text-white"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -178,55 +107,29 @@ const Header = () => {
               </svg>
             </button>
           </div>
-          <ul className="flex flex-col space-y-3 px-6 py-6 text-lg font-medium">
+          <ul className="flex flex-col space-y-1 px-6 py-6 text-lg font-medium">
             <li>
               <Link
                 to="/"
-                className="block py-2 hover:text-orange-600 transition-colors duration-200"
+                className="block py-3 px-2 hover:text-orange-600 hover:bg-orange-50 rounded-md transition-colors duration-200"
                 onClick={toggleSidebar}
               >
                 Home
               </Link>
             </li>
             <li>
-              <button
-                onClick={toggleMobileServices}
-                className="py-2 hover:text-orange-600 w-full text-left flex items-center transition-colors duration-200"
+              <Link
+                to="/services"
+                className="block py-3 px-2 hover:text-orange-600 hover:bg-orange-50 rounded-md transition-colors duration-200"
+                onClick={toggleSidebar}
               >
                 Services
-                <svg
-                  className="w-4 h-4 ml-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d={isMobileServicesOpen ? "M5 15l7-7 7 7" : "M19 9l-7 7-7-7"}
-                  />
-                </svg>
-              </button>
-              {isMobileServicesOpen && (
-                <div className="pl-4 space-y-2 mt-2">
-                  {services.map((service) => (
-                    <Link
-                      key={service.slug}
-                      to={`/services/${service.slug}`}
-                      className="block py-2 text-sm hover:text-orange-600 transition-colors duration-200"
-                      onClick={toggleSidebar}
-                    >
-                      {service.title}
-                    </Link>
-                  ))}
-                </div>
-              )}
+              </Link>
             </li>
             <li>
               <a
                 href="/#about"
-                className="block py-2 hover:text-orange-600 transition-colors duration-200"
+                className="block py-3 px-2 hover:text-orange-600 hover:bg-orange-50 rounded-md transition-colors duration-200"
                 onClick={toggleSidebar}
               >
                 About
@@ -235,7 +138,7 @@ const Header = () => {
             <li>
               <a
                 href="/#footer"
-                className="block py-2 hover:text-orange-600 transition-colors duration-200"
+                className="block py-3 px-2 hover:text-orange-600 hover:bg-orange-50 rounded-md transition-colors duration-200"
                 onClick={toggleSidebar}
               >
                 Contact
