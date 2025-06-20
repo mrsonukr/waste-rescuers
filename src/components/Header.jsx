@@ -14,7 +14,9 @@ const Header = () => {
       {/* Desktop Navigation */}
       <nav className="hidden md:flex container mx-auto px-6 py-3 items-center justify-between">
         <div className="w-20">
-          <img src={logo} alt="Waste Rescuers Logo" width="80" height="65" loading="eager" />
+          <Link to="/">
+            <img src={logo} alt="Waste Rescuers Logo" width="80" height="65" loading="eager" />
+          </Link>
         </div>
         <ul className="flex space-x-8 text-lg font-medium">
           <li>
@@ -30,16 +32,16 @@ const Header = () => {
             </Link>
           </li>
           <li>
-            <a href="/#about" className="relative group">
+            <Link to="/about" className="relative group">
               About
               <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-orange-600 transition-all duration-300 group-hover:w-full"></span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/#footer" className="relative group">
+            <Link to="/contact" className="relative group">
               Contact
               <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-orange-600 transition-all duration-300 group-hover:w-full"></span>
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>
@@ -48,7 +50,9 @@ const Header = () => {
       <div className="md:hidden">
         <div className="flex justify-between items-center px-6 py-3">
           <div className="w-16">
-            <img src={logo} alt="Waste Rescuers Logo" width="64" height="52" loading="eager" />
+            <Link to="/">
+              <img src={logo} alt="Waste Rescuers Logo" width="64" height="52" loading="eager" />
+            </Link>
           </div>
           <button 
             onClick={toggleSidebar} 
@@ -85,7 +89,9 @@ const Header = () => {
         >
           <div className="flex justify-between items-center px-6 py-3 border-b">
             <div className="w-16">
-              <img src={logo} alt="Waste Rescuers Logo" width="64" height="52" loading="eager" />
+              <Link to="/" onClick={toggleSidebar}>
+                <img src={logo} alt="Waste Rescuers Logo" width="64" height="52" loading="eager" />
+              </Link>
             </div>
             <button 
               onClick={toggleSidebar} 
@@ -127,22 +133,22 @@ const Header = () => {
               </Link>
             </li>
             <li>
-              <a
-                href="/#about"
+              <Link
+                to="/about"
                 className="block py-3 px-2 hover:text-orange-600 hover:bg-orange-50 rounded-md transition-colors duration-200"
                 onClick={toggleSidebar}
               >
                 About
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="/#footer"
+              <Link
+                to="/contact"
                 className="block py-3 px-2 hover:text-orange-600 hover:bg-orange-50 rounded-md transition-colors duration-200"
                 onClick={toggleSidebar}
               >
                 Contact
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

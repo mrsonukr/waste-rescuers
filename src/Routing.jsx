@@ -1,6 +1,9 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Booking from "./pages/Booking";
 import NotFound from "./pages/NotFound";
 import Services from "./pages/Services";
@@ -13,6 +16,9 @@ const Routing = () => {
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/book" element={<Booking />} />
           <Route path="/services" element={<Services />} />
           <Route path="/services/:serviceSlug" element={<Services />} />
