@@ -9,6 +9,7 @@ import Faq from "../components/ui/Faq";
 import BookAppointment from "../components/ui/BookAppointment";
 import WhatsAppButton from "../components/ui/WhatsAppButton";
 import BookingPopup from "../components/ui/BookingPopup";
+import SEO from "../components/SEO";
 
 const Home = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -57,6 +58,13 @@ const Home = () => {
 
   return (
     <>
+      <SEO 
+        title="Waste Rescuers - Fast & Affordable Waste Removal Services London"
+        description="Professional waste removal services in London. Upper Tier Carrier registered (CBDU571009). Fast, eco-friendly waste disposal. Trusted by 2,240+ customers. Book now!"
+        keywords="waste removal London, rubbish removal, mattress removal, furniture removal, garden waste removal, man and van, waste disposal"
+        canonical="https://wasterescuers.uk/"
+      />
+      
       <Header />
       
       {/* Hero Section - Attractive UI without image banners */}

@@ -9,6 +9,7 @@ import Faq from "../components/ui/Faq";
 import BookAppointment from "../components/ui/BookAppointment";
 import WhatsAppButton from "../components/ui/WhatsAppButton";
 import BookingPopup from "../components/ui/BookingPopup";
+import SEO from "../components/SEO";
 
 const Services = () => {
   const { serviceSlug } = useParams();
@@ -21,6 +22,9 @@ const Services = () => {
       title: "Waste Removal",
       description: "Fast and eco-friendly waste removal for households, businesses, and construction sites.",
       image: "/assets/waste-holder.webp",
+      seoTitle: "Professional Waste Removal Services London - Same Day Collection",
+      seoDescription: "Expert waste removal services in London. Licensed waste carriers with eco-friendly disposal. Same-day collection available. Call +44 7749991862 for free quote.",
+      seoKeywords: "waste removal London, professional waste disposal, same day waste collection, licensed waste carriers, eco-friendly waste removal",
       detailedContent: {
         overview: "Our comprehensive waste removal service is designed to handle all types of waste efficiently and responsibly. We understand that waste accumulation can be overwhelming, whether it's from daily household activities, office cleanouts, or construction projects.",
         features: [
@@ -54,6 +58,9 @@ const Services = () => {
       title: "Mattress Removal",
       description: "Hassle-free mattress disposal with professional and responsible recycling.",
       image: "/assets/sofa-holder.webp",
+      seoTitle: "Mattress Removal London - Professional Mattress Disposal Service",
+      seoDescription: "Professional mattress removal and disposal in London. Eco-friendly mattress recycling service. Same-day collection available. Book online or call now.",
+      seoKeywords: "mattress removal London, mattress disposal, mattress recycling, old mattress collection, eco-friendly mattress disposal",
       detailedContent: {
         overview: "Getting rid of old mattresses can be challenging due to their size and disposal requirements. Our mattress removal service takes care of everything, ensuring your old mattress is disposed of responsibly and in compliance with environmental regulations.",
         features: [
@@ -87,6 +94,9 @@ const Services = () => {
       title: "Man and Van",
       description: "Reliable man and van services for quick and efficient waste transport.",
       image: "/assets/man.jpg",
+      seoTitle: "Man and Van Services London - Reliable Waste Transport",
+      seoDescription: "Professional man and van services in London for waste removal and transport. Experienced drivers, various van sizes available. Flexible booking times.",
+      seoKeywords: "man and van London, waste transport, van hire with driver, reliable man and van, waste removal transport",
       detailedContent: {
         overview: "Our man and van service provides flexible, reliable transportation for your waste removal needs. Whether you need a one-off collection or regular waste transport, our experienced drivers and well-maintained vehicles ensure your waste reaches its destination safely.",
         features: [
@@ -120,6 +130,9 @@ const Services = () => {
       title: "Rubbish Removal",
       description: "Clear out clutter with our comprehensive rubbish removal solutions.",
       image: "/assets/waste-holder.webp",
+      seoTitle: "Rubbish Removal London - Professional Clutter Clearance Service",
+      seoDescription: "Professional rubbish removal and clutter clearance in London. Complete property clearances available. Eco-friendly disposal with recycling. Free quotes.",
+      seoKeywords: "rubbish removal London, clutter clearance, property clearance, junk removal, household rubbish collection",
       detailedContent: {
         overview: "Our rubbish removal service is perfect for clearing out accumulated clutter from homes, offices, or commercial spaces. We handle everything from small bag collections to full property clearances, ensuring all rubbish is disposed of responsibly.",
         features: [
@@ -153,6 +166,9 @@ const Services = () => {
       title: "Garden Waste Removal",
       description: "Hassle-Free Garden Waste Removal, Revitalizing Your Outdoors.",
       image: "/assets/jcb.jpg",
+      seoTitle: "Garden Waste Removal London - Green Waste Collection Service",
+      seoDescription: "Professional garden waste removal in London. Green waste collection and composting. Tree cutting waste, grass cuttings, hedge trimmings. Same-day service available.",
+      seoKeywords: "garden waste removal London, green waste collection, tree cutting waste, grass cuttings removal, hedge trimming disposal",
       detailedContent: {
         overview: "Transform your outdoor space with our comprehensive garden waste removal service. From seasonal cleanups to ongoing maintenance waste, we handle all types of garden debris, helping you maintain a beautiful and tidy outdoor environment.",
         features: [
@@ -186,6 +202,9 @@ const Services = () => {
       title: "Furniture Removal",
       description: "Professional furniture removal for homes and offices, big or small.",
       image: "/assets/sofa-holder.webp",
+      seoTitle: "Furniture Removal London - Professional Furniture Disposal Service",
+      seoDescription: "Expert furniture removal and disposal in London. Sofa removal, office furniture clearance, charity donations. Professional dismantling service available.",
+      seoKeywords: "furniture removal London, sofa removal, office furniture clearance, furniture disposal, charity furniture donation",
       detailedContent: {
         overview: "Whether you're moving, renovating, or simply updating your space, our furniture removal service handles pieces of all sizes. We ensure careful handling and responsible disposal, with many items being donated or recycled rather than sent to landfill.",
         features: [
@@ -226,6 +245,13 @@ const Services = () => {
   if (!selectedService) {
     return (
       <div>
+        <SEO 
+          title="Professional Waste Removal Services London - All Services"
+          description="Complete range of waste removal services in London. Waste removal, mattress disposal, furniture removal, garden waste, man and van. Licensed and insured."
+          keywords="waste removal services London, professional waste disposal, mattress removal, furniture removal, garden waste removal, man and van services"
+          canonical="https://wasterescuers.uk/services"
+        />
+        
         <Header />
         
         {/* Hero Section without banner */}
@@ -291,6 +317,13 @@ const Services = () => {
   // Show specific service page
   return (
     <div>
+      <SEO 
+        title={selectedService.seoTitle}
+        description={selectedService.seoDescription}
+        keywords={selectedService.seoKeywords}
+        canonical={`https://wasterescuers.uk/services/${selectedService.slug}`}
+      />
+      
       <Header />
       
       {/* Service Hero Section with Image */}

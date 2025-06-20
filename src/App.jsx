@@ -1,10 +1,14 @@
 import React from 'react';
+import { HelmetProvider } from 'react-helmet-async';
 import Routing from './Routing'
+
 const App = () => {
   return (
-    <div>
-      <Routing />
-    </div>
+    <HelmetProvider>
+      <div>
+        <Routing />
+      </div>
+    </HelmetProvider>
   );
 }
 
