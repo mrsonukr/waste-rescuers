@@ -1,0 +1,13 @@
+# robots.txt for wasterescuers.uk
+User-agent: *
+Allow: /
+
+# Disallow access to private or backend directories
+Disallow: /admin/
+Disallow: /login/
+Disallow: /user-account/
+Disallow: /privacy-policy/
+Disallow: /terms-and-conditions/
+
+# Sitemap location
+Sitemap: https://wasterescuers.uk/sitemap.xml
