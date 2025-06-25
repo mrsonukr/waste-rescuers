@@ -59,9 +59,9 @@ const Home = () => {
   return (
     <>
       <SEO 
-        title="Waste Rescuers - Fast & Affordable Waste Removal Services London"
-        description="Professional waste removal services in London. Upper Tier Carrier registered (CBDU571009). Fast, eco-friendly waste disposal. Trusted by 2,240+ customers. Book now!"
-        keywords="waste removal London, rubbish removal, mattress removal, furniture removal, garden waste removal, man and van, waste disposal"
+        title="Affordable Rubbish & Junk Removal | Fast Clearance Service"
+        description="Reliable rubbish removal, junk clearance, and waste disposal. Quick, affordable, and eco-friendly services for homes and businesses. Book your clearance today!"
+        keywords="rubbish removal, junk removal, waste disposal, clearance service, rubbish collection, junk clearance, waste removal London, affordable rubbish removal, eco-friendly waste disposal"
         canonical="https://wasterescuers.uk/"
       />
       
@@ -78,7 +78,7 @@ const Home = () => {
                 <br />
                 <span className="text-green-600">Fast & Affordable</span>
                 <br />
-                <span className="text-gray-800">Waste Removal</span>
+                <span className="text-gray-800">Rubbish Removal</span>
               </h1>
               
               {/* Subtitle */}
@@ -88,7 +88,7 @@ const Home = () => {
               </p>
               
               <p className="text-base sm:text-lg md:text-xl text-gray-700 mb-8 max-w-3xl mx-auto">
-                London&apos;s best waste removal company - trusted by 2,240+ customers
+                London&apos;s best rubbish removal company - trusted by 2,240+ customers
               </p>
               
               {/* Action Buttons */}
@@ -96,7 +96,7 @@ const Home = () => {
                 <button
                   onClick={openPopup}
                   className="w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white font-semibold py-4 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105 shadow-lg"
-                  aria-label="Book waste removal appointment"
+                  aria-label="Book rubbish removal appointment"
                 >
                   Book Now
                 </button>
@@ -154,7 +154,7 @@ const Home = () => {
             <button
               onClick={openPopup}
               className="uppercase bg-orange-500 py-4 font-semibold px-5 text-white rounded-xl hover:bg-orange-600 transition duration-200 text-xs sm:text-sm w-full md:w-auto text-center block"
-              aria-label="Book an appointment for waste removal"
+              aria-label="Book an appointment for rubbish removal"
             >
               Book An Appointment
             </button>
