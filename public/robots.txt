@@ -7,6 +7,9 @@ Disallow: /admin/
 Disallow: /login/
 Disallow: /user-account/
 
+# Block Cloudflare auto-injected Zaraz and other internal resources
+Disallow: /cdn-cgi/
+
 # Sitemap location
 Sitemap: https://wasterescuers.uk/sitemap.xml
 
