@@ -6,8 +6,14 @@ Allow: /
 Disallow: /admin/
 Disallow: /login/
 Disallow: /user-account/
-Disallow: /privacy-policy/
-Disallow: /terms-and-conditions/
 
 # Sitemap location
 Sitemap: https://wasterescuers.uk/sitemap.xml
+
+# Prevent crawling of URLs with trailing slashes (except root)
+# This helps consolidate URL authority to non-trailing slash versions
+Disallow: /about/
+Disallow: /contact/
+Disallow: /services/
+Disallow: /privacy-policy/
+Disallow: /services/*/

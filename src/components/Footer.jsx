@@ -102,12 +102,12 @@ const Footer = () => {
           <div className="w-[30%] h-[2px] bg-green-400 my-2 mx-auto sm:mx-0"></div>
           <ul>
             <li>
-              <a
-                href="/privacy-policy/"
+              <Link
+                to="/privacy-policy"
                 className="text-white text-xs sm:text-sm hover:text-green-400"
               >
                 Privacy Policy
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -124,23 +124,21 @@ const Footer = () => {
           <div className="w-[30%] h-[2px] bg-green-400 my-2 mx-auto sm:mx-0"></div>
           <ul className="space-y-1">
             {[
-              "Waste Removal",
-              "Mattress Removal",
-              "Man and Van",
-              "Rubbish Removal",
-              "Appliance Removal",
-              "Furniture Removal",
-              "Garden Waste Removal",
+              { name: "Waste Removal", slug: "waste-removal" },
+              { name: "Mattress Removal", slug: "mattress-removal" },
+              { name: "Man and Van", slug: "man-and-van" },
+              { name: "Rubbish Removal", slug: "rubbish-removal" },
+              { name: "Appliance Removal", slug: "appliance-removal" },
+              { name: "Furniture Removal", slug: "furniture-removal" },
+              { name: "Garden Waste Removal", slug: "garden-waste-removal" },
             ].map((service, idx) => (
               <li key={idx}>
-                <a
-                  href={`/services/${service
-                    .toLowerCase()
-                    .replace(/\s/g, "-")}/`}
+                <Link
+                  to={`/services/${service.slug}`}
                   className="text-white text-xs sm:text-sm hover:text-green-400"
                 >
-                  {service}
-                </a>
+                  {service.name}
+                </Link>
               </li>
             ))}
           </ul>
@@ -174,47 +172,6 @@ const Footer = () => {
             Make Appointment
           </a>
         </div>
-
-        {/* Payment and Registration */}
-        {/* <div
-          className={`w-full sm:w-[70%] flex flex-wrap justify-center sm:justify-end mt-4 sm:mt-0 transform transition-all duration-500 ease-out delay-500 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-          }`}
-        >
-          <div className="w-full sm:w-auto text-center">
-            <p className="text-white text-xs sm:text-sm mb-2">We Accept</p>
-            <div className="flex flex-wrap justify-center gap-1 sm:gap-2">
-              {[
-                "Apple_Pay-Logo.wine_.png",
-                "Google_Pay-Logo.wine_.png",
-                "Stripe_company-Logo.wine_.png",
-                "PayPal-Logo.wine_.png",
-                "Mastercard-Logo.wine_.png",
-                "Visa_Inc.-Logo.wine_.png",
-                "American_Express-Logo.wine_.png",
-              ].map((img, idx) => (
-                <img
-                  key={idx}
-                  src={`https://quickyremovals.co.uk/wp-content/uploads/2025/01/${img}`}
-                  alt={img.split("-")[0]}
-                  width={50}
-                  height={33}
-                  className="bg-white max-w-[50px] sm:max-w-[60px]"
-                />
-              ))}
-            </div>
-          </div>
-          <div className="w-full sm:w-auto text-center mt-4 sm:mt-0 sm:ml-4">
-            <p className="text-white text-xs sm:text-sm mb-2">Registered With</p>
-            <img
-              src="https://quickyremovals.co.uk/wp-content/uploads/2025/01/png-transparent-environment-agency-united-kingdom-natural-environment-department-for-environment-food-and-rural-affairs-united-kingdom-text-logo-grass-removebg-preview.png"
-              alt="Environment Agency"
-              width={140}
-              height={41}
-              className="mx-auto sm:mx-0 max-w-[140px] sm:max-w-[170px]"
-            />
-          </div>
-        </div> */}
       </div>
 
       {/* Bottom Section */}

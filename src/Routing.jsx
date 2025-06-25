@@ -7,11 +7,13 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import NotFound from "./pages/NotFound";
 import Services from "./pages/Services";
 import ScrollToTop from "./components/ScrollToTop";
+import TrailingSlashRedirect from "./components/TrailingSlashRedirect";
 
 const Routing = () => {
   return (
     <div>
       <BrowserRouter>
+        <TrailingSlashRedirect />
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />

@@ -26,5 +26,10 @@ export default defineConfig({
   },
   server: {
     port: 3000
+  },
+  // Ensure trailing slashes are handled consistently
+  preview: {
+    port: 3000,
+    strictPort: true
   }
 })

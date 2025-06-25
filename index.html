@@ -25,6 +25,17 @@
     gtag('config', 'G-N23DJYB7FV');
   </script>
 
+  <!-- Canonical URL enforcement script -->
+  <script>
+    // Redirect trailing slash URLs to non-trailing slash (except root)
+    if (window.location.pathname !== '/' && window.location.pathname.endsWith('/')) {
+      const newUrl = window.location.protocol + '//' + window.location.host + 
+                     window.location.pathname.slice(0, -1) + 
+                     window.location.search + window.location.hash;
+      window.history.replaceState(null, null, newUrl);
+    }
+  </script>
+
 </head>
 
 <body>

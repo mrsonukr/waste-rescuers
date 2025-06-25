@@ -59,11 +59,27 @@
     <priority>0.8</priority>
   </url>
   
-  <!-- Booking page -->
+  <!-- About page -->
   <url>
-    <loc>https://wasterescuers.uk/book</loc>
+    <loc>https://wasterescuers.uk/about</loc>
     <lastmod>2025-01-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  
+  <!-- Contact page -->
+  <url>
+    <loc>https://wasterescuers.uk/contact</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Privacy Policy page -->
+  <url>
+    <loc>https://wasterescuers.uk/privacy-policy</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 </urlset>
