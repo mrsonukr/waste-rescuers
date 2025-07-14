@@ -21,8 +21,6 @@ const Routing = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/services" element={<Services />} />
-          {/* Regional service pages - must come before general service routes */}
-          <Route path="/services/:serviceSlug/:citySlug" element={<Services />} />
           <Route path="/services/:serviceSlug" element={<Services />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
