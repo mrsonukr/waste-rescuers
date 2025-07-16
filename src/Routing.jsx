@@ -8,7 +8,8 @@ import NotFound from "./pages/NotFound";
 import Services from "./pages/Services";
 import ScrollToTop from "./components/ScrollToTop";
 import TrailingSlashRedirect from "./components/TrailingSlashRedirect";
-
+import London from "./subpages/London";
+import Test from "./subpages/Test";
 const Routing = () => {
   return (
     <div>
@@ -23,6 +24,8 @@ const Routing = () => {
           <Route path="/services" element={<Services />} />
           <Route path="/services/:serviceSlug" element={<Services />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/london" element={<London />} />
+          <Route path="/test" element={<Test />} />
         </Routes>
       </BrowserRouter>
     </div>
