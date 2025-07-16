@@ -9,7 +9,8 @@ import Services from "./pages/Services";
 import ScrollToTop from "./components/ScrollToTop";
 import TrailingSlashRedirect from "./components/TrailingSlashRedirect";
 import London from "./subpages/London";
-import Test from "./subpages/Test";
+import Manchester from "./subpages/Manchester";
+import Birmingham from "./subpages/Birmingham";
 const Routing = () => {
   return (
     <div>
@@ -23,9 +24,11 @@ const Routing = () => {
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/services" element={<Services />} />
           <Route path="/services/:serviceSlug" element={<Services />} />
+          <Route path="/services/:serviceSlug/:location" element={<Services />} />
           <Route path="*" element={<NotFound />} />
-          <Route path="/london" element={<London />} />
-          <Route path="/test" element={<Test />} />
+          <Route path="/services/waste-removal/london" element={<London />} />
+          <Route path="/services/waste-removal/manchester" element={<Manchester />} />
+          <Route path="/services/waste-removal/birmingham" element={<Birmingham />} />
         </Routes>
       </BrowserRouter>
     </div>

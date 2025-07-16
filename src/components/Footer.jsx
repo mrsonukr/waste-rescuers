@@ -128,9 +128,11 @@ const Footer = () => {
               { name: "Mattress Removal", slug: "mattress-removal" },
               { name: "Man and Van", slug: "man-and-van" },
               { name: "Rubbish Removal", slug: "rubbish-removal" },
-              { name: "Appliance Removal", slug: "appliance-removal" },
               { name: "Furniture Removal", slug: "furniture-removal" },
               { name: "Garden Waste Removal", slug: "garden-waste-removal" },
+             { name: "London Waste Removal", slug: "waste-removal/london" },
+             { name: "Manchester Waste Removal", slug: "waste-removal/manchester" },
+             { name: "Birmingham Waste Removal", slug: "waste-removal/birmingham" },
             ].map((service, idx) => (
               <li key={idx}>
                 <Link

@@ -59,6 +59,28 @@
     <priority>0.8</priority>
   </url>
   
+  <!-- Location-specific service pages -->
+  <url>
+    <loc>https://wasterescuers.uk/services/waste-removal/london</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://wasterescuers.uk/services/waste-removal/manchester</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://wasterescuers.uk/services/waste-removal/birmingham</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
   <!-- About page -->
   <url>
     <loc>https://wasterescuers.uk/about</loc>
