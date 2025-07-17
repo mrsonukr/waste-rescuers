@@ -3,7 +3,7 @@ import React from "react";
 const LocationHero = ({ 
   title, 
   subtitle, 
-  backgroundImage = "/assets/cleaner.png",
+  backgroundImage = "/assets/cleaner.webp",
   onBookAppointment 
 }) => {
   return (
