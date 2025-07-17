@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import ContactCard from "../components/ui/ContactCard";
 import SolutionCard from "../components/ui/SolutionCard";
 import AboutTab from "../components/AboutTab";
-import Faq from "../components/ui/Faq";
+import UniversalFaq from "../components/ui/UniversalFaq";
 import BookAppointment from "../components/ui/BookAppointment";
 import WhatsAppButton from "../components/ui/WhatsAppButton";
 import BookingPopup from "../components/ui/BookingPopup";
@@ -176,7 +176,7 @@ const Home = () => {
         </section>
         
         <AboutTab />
-        <Faq />
+        <UniversalFaq faqKey="general" />
         <BookAppointment />
       </main>
       

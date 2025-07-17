@@ -10,10 +10,11 @@ import ServiceSection from "./ServiceSection";
 import CustomerTypesSection from "./CustomerTypesSection";
 import InfoSection from "./InfoSection";
 import ProcessSection from "./ProcessSection";
+import UniversalFaq from "./UniversalFaq";
 
 const LocationPageLayout = ({ 
   locationData, 
-  faqComponent: FaqComponent 
+  faqComponent: FaqComponent // Keep for backward compatibility
 }) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const openPopup = () => setIsPopupOpen(true);
@@ -61,7 +62,12 @@ const LocationPageLayout = ({
         <ProcessSection {...locationData.processSection} />
       )}
 
-      <FaqComponent />
+      {/* Use UniversalFaq with location-specific data, fallback to custom component */}
+      {FaqComponent ? (
+        <FaqComponent />
+      ) : (
+        <UniversalFaq faqKey={locationData.faqKey || "general"} />
+      )}
       <BookAppointment />
       <Footer />
       <WhatsAppButton />

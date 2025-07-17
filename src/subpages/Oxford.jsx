@@ -2,12 +2,12 @@ import React from "react";
 import LocationPageLayout from "../components/ui/LocationPageLayout";
 import { locationData } from "../data/locationData";
 
-const London = () => {
+const Oxford = () => {
   return (
     <LocationPageLayout 
-      locationData={locationData.london}
+      locationData={locationData.oxford}
     />
   );
 };
 
-export default London;
+export default Oxford;

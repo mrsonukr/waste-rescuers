@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import SolutionCard from "../components/ui/SolutionCard";
 import AboutTab from "../components/AboutTab";
 import Customer from "../components/ui/Customer";
-import Faq from "../components/ui/Faq";
+import UniversalFaq from "../components/ui/UniversalFaq";
 import BookAppointment from "../components/ui/BookAppointment";
 import WhatsAppButton from "../components/ui/WhatsAppButton";
 import BookingPopup from "../components/ui/BookingPopup";
@@ -305,7 +305,7 @@ const Services = () => {
         
         <AboutTab />
         <Customer />
-        <Faq />
+        <UniversalFaq faqKey="general" />
         <BookAppointment />
         <Footer />
         <WhatsAppButton />
@@ -314,6 +314,18 @@ const Services = () => {
     );
   }
 
+  // Get FAQ key based on service type
+  const getFaqKeyForService = (slug) => {
+    const serviceToFaqMap = {
+      'waste-removal': 'wasteRemoval',
+      'mattress-removal': 'mattressRemoval',
+      'furniture-removal': 'furnitureRemoval',
+      'garden-waste-removal': 'gardenWaste',
+      'man-and-van': 'general',
+      'rubbish-removal': 'general'
+    };
+    return serviceToFaqMap[slug] || 'general';
+  };
   // Show specific service page
   return (
     <div>
@@ -471,7 +483,7 @@ const Services = () => {
       
       <AboutTab />
       <Customer />
-      <Faq />
+      <UniversalFaq faqKey={getFaqKeyForService(selectedService.slug)} />
       <BookAppointment />
       <Footer />
       <WhatsAppButton />

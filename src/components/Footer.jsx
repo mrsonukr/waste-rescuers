@@ -133,6 +133,14 @@ const Footer = () => {
              { name: "London Waste Removal", slug: "waste-removal/london" },
              { name: "Manchester Waste Removal", slug: "waste-removal/manchester" },
              { name: "Birmingham Waste Removal", slug: "waste-removal/birmingham" },
+             { name: "Cardiff Waste Removal", slug: "waste-removal/cardiff" },
+             { name: "Milton Keynes Waste Removal", slug: "waste-removal/milton-keynes" },
+             { name: "Maidenhead Waste Removal", slug: "waste-removal/maidenhead" },
+             { name: "Oxford Waste Removal", slug: "waste-removal/oxford" },
+             { name: "London Mattress Removal", slug: "mattress-removal/london" },
+             { name: "Birmingham Mattress Removal", slug: "mattress-removal/birmingham" },
+             { name: "Manchester Mattress Removal", slug: "mattress-removal/manchester" },
+             { name: "Cardiff Mattress Removal", slug: "mattress-removal/cardiff" },
             ].map((service, idx) => (
               <li key={idx}>
                 <Link
