@@ -8,17 +8,28 @@ const BookAppointment = () => {
     postalCode: "",
     service: "",
   });
-  const [services] = useState([
-    { _id: "1", name: "Waste Removal" },
-    { _id: "2", name: "Mattress Removal" },
-    { _id: "3", name: "Man and Van" },
-    { _id: "4", name: "Rubbish Removal" },
-    { _id: "5", name: "Garden Waste Removal" },
-    { _id: "6", name: "Furniture Removal" }
-  ]);
+  const [services, setServices] = useState([]);
   const [isVisible, setIsVisible] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const sectionRef = useRef(null);
+
+  // Fetch services from backend
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const response = await fetch("https://quarrelsome-wendye-mrsonukr-1c5781f4.koyeb.app/api/services");
+        if (!response.ok) {
+          throw new Error("Failed to fetch services");
+        }
+        const data = await response.json();
+        setServices(data);
+      } catch (error) {
+        console.error("Error fetching services:", error);
+        alert("Failed to load services. Please try again later.");
+      }
+    };
+    fetchServices();
+  }, []);
 
   // Intersection observer for animation
   useEffect(() => {
@@ -120,7 +131,7 @@ const BookAppointment = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/appointments", {
+      const response = await fetch("https://quarrelsome-wendye-mrsonukr-1c5781f4.koyeb.app/api/appointments", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),

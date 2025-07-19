@@ -8,14 +8,7 @@ const BookingPopup = ({ isOpen, onClose }) => {
     postalCode: "",
     service: "",
   });
-  const [services] = useState([
-    { _id: "1", name: "Waste Removal" },
-    { _id: "2", name: "Mattress Removal" },
-    { _id: "3", name: "Man and Van" },
-    { _id: "4", name: "Rubbish Removal" },
-    { _id: "5", name: "Garden Waste Removal" },
-    { _id: "6", name: "Furniture Removal" }
-  ]);
+  const [services, setServices] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Close popup on escape key
@@ -35,6 +28,27 @@ const BookingPopup = ({ isOpen, onClose }) => {
     };
   }, [isOpen, onClose]);
 
+  // Fetch services from API when popup opens
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const response = await fetch("https://quarrelsome-wendye-mrsonukr-1c5781f4.koyeb.app/api/services");
+        if (!response.ok) {
+          throw new Error("Failed to fetch services");
+        }
+        const data = await response.json();
+        setServices(data);
+      } catch (error) {
+        console.error("Error fetching services:", error);
+        alert("Failed to load services. Please try again later.");
+      }
+    };
+
+    if (isOpen) {
+      fetchServices();
+    }
+  }, [isOpen]);
+
   const formatPostalCode = (value) => {
     let cleaned = value.replace(/\s/g, "").toUpperCase();
     if (cleaned.length >= 5) {
@@ -52,13 +66,10 @@ const BookingPopup = ({ isOpen, onClose }) => {
   const handlePhoneChange = (e) => {
     let value = e.target.value;
     let cleaned = value.replace(/[^\d+]/g, "");
-    
     if (!cleaned.startsWith("+44") || cleaned.length < 3) {
       cleaned = "+44";
     }
-    
     cleaned = cleaned.slice(0, 13);
-    
     setForm({
       ...form,
       phone: cleaned,
@@ -100,7 +111,7 @@ const BookingPopup = ({ isOpen, onClose }) => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/appointments", {
+      const response = await fetch("https://quarrelsome-wendye-mrsonukr-1c5781f4.koyeb.app/api/appointments", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -134,7 +145,7 @@ const BookingPopup = ({ isOpen, onClose }) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-2 sm:p-4">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-md sm:max-w-lg h-fit max-h-[95vh] flex flex-col">
-        {/* Header - Fixed */}
+        {/* Header */}
         <div className="bg-gradient-to-r from-green-500 to-teal-600 p-4 sm:p-6 rounded-t-xl flex-shrink-0">
           <div className="flex justify-between items-center">
             <h2 className="text-xl sm:text-2xl font-bold text-white">Book Your Appointment</h2>
@@ -150,7 +161,7 @@ const BookingPopup = ({ isOpen, onClose }) => {
           </div>
         </div>
 
-        {/* Form - Scrollable */}
+        {/* Form */}
         <div className="flex-1 overflow-y-auto">
           <form onSubmit={handleSubmit} className="p-4 sm:p-6 space-y-4">
             <div className="grid grid-cols-1 gap-4">
@@ -231,9 +242,11 @@ const BookingPopup = ({ isOpen, onClose }) => {
                   onChange={handleChange}
                   className="block w-full px-3 py-2.5 text-sm rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent appearance-none bg-white"
                   required
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || services.length === 0}
                 >
-                  <option value="">-- Select a service --</option>
+                  <option value="">
+                    {services.length === 0 ? "Loading services..." : "-- Select a service --"}
+                  </option>
                   {services.map((service) => (
                     <option key={service._id} value={service.name}>
                       {service.name}
@@ -243,7 +256,7 @@ const BookingPopup = ({ isOpen, onClose }) => {
               </div>
             </div>
 
-            {/* Buttons - Fixed at bottom */}
+            {/* Buttons */}
             <div className="flex gap-3 pt-4 border-t border-gray-100 mt-6">
               <button
                 type="button"
