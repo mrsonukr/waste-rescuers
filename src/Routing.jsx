@@ -8,8 +8,7 @@ import NotFound from "./pages/NotFound";
 import Services from "./pages/Services";
 import ScrollToTop from "./components/ScrollToTop";
 import TrailingSlashRedirect from "./components/TrailingSlashRedirect";
-import London from "./subpages/London";
-import LondonMattress from "./subpages/mattress/LondonMattress";
+import LocationPage from "./pages/LocationPage";
 
 const Routing = () => {
   return (
@@ -24,14 +23,8 @@ const Routing = () => {
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/services" element={<Services />} />
           <Route path="/services/:serviceSlug" element={<Services />} />
-          <Route path="/services/:serviceSlug/:location" element={<Services />} />
+          <Route path="/services/:serviceSlug/:location" element={<LocationPage />} />
           <Route path="*" element={<NotFound />} />
-          
-          {/* Waste Removal Location Pages */}
-          <Route path="/services/waste-removal/london" element={<London />} />
-          
-          {/* Mattress Removal Location Pages */}
-          <Route path="/services/mattress-removal/london" element={<LondonMattress />} />
         </Routes>
       </BrowserRouter>
     </div>
