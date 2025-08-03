@@ -12,6 +12,7 @@ import CustomerTypesSection from "../components/ui/CustomerTypesSection";
 import InfoSection from "../components/ui/InfoSection";
 import ProcessSection from "../components/ui/ProcessSection";
 import { getLocationPageData, isValidLocation } from "../data/locationPageData";
+import { getServiceLocationData } from "../data/serviceLocationData";
 
 const LocationPage = () => {
   const { serviceSlug, location } = useParams();
@@ -27,6 +28,9 @@ const LocationPage = () => {
 
   // Get location-specific data
   const locationData = getLocationPageData(serviceSlug, location);
+  
+  // Get service-specific data
+  const serviceData = getServiceLocationData(serviceSlug);
 
   // Format location name for display (capitalize first letter)
   const formatLocationName = (locationName) => {
@@ -37,39 +41,28 @@ const LocationPage = () => {
       .join(' ');
   };
 
-  // Static data structure
-  const staticData = {
+  // Combined data structure using service-specific content
+  const pageData = {
     seo: locationData.seo,
     hero: {
-      title: `Rubbish and Waste Removal ${formatLocationName(location)}`,
-      subtitle: "Call Now for a free same-day quotation",
-      backgroundImage: "/assets/cleaner.webp",
+      title: `${serviceData.hero.title} ${formatLocationName(location)}`,
+      subtitle: serviceData.hero.subtitle,
+      backgroundImage: serviceData.hero.backgroundImage,
     },
     mainSection: {
-      title: `Waste Removal ${formatLocationName(location)} by Waste Rescuers Ltd.`,
+      title: `${serviceData.mainSection.title} in ${formatLocationName(location)}`,
       content: [
-        `We have helped hundreds of Domestic & Commercial customers to tackle their waste removal jobs throughout ${formatLocationName(location)} and the surrounding areas.`,
-        `First established in 2020, Waste Rescuers Ltd has grown to be one of the largest and most reviewed Waste Removal Companies. Don't take our word for it; check out our google reviews. Waste Rescuers Ltd can carry out jobs from a single item to multiple truck loads from anywhere in the ${formatLocationName(location)} area.`,
+        `${serviceData.mainSection.content[0]} We have helped hundreds of customers throughout ${formatLocationName(location)} and the surrounding areas.`,
+        `${serviceData.mainSection.content[1]} First established in 2020, Waste Rescuers Ltd has grown to be one of the most trusted service providers in the ${formatLocationName(location)} area.`,
       ],
-      videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
-      thumbnailUrl: "https://cdn.prod.website-files.com/616e938268c8f0a92cb2b540/626b2105eca8a62c25bbd9f0_youtube%20thumbnail%20size%20and%20best%20practices%20by%20veed%20studio.jpg",
+      videoUrl: serviceData.mainSection.videoUrl,
+      thumbnailUrl: serviceData.mainSection.thumbnailUrl,
     },
     serviceSection: {
-      title: `Waste Removal ${formatLocationName(location)} Service`,
-      content: [
-        "We have listed some of the reasons why our customers use Waste Rescuers Below.",
-        "CRB Checked Staff Members. Fully Insured & Uniformed. New Sign Written Vans. Fully Licensed. Experienced & Trained.",
-        `Our highly skilled and motivated workforce are experienced enough to work on varying specifications of Waste Removal ${formatLocationName(location)}. We have carried out 100s of Waste Removal jobs in the area for both domestic and commercial customers.`,
-        "If you need any more help please give us call. Our office is open 6 days per week and would be more than happy to assist you with all your questions.",
-      ],
+      title: `${serviceData.serviceSection.title} in ${formatLocationName(location)}`,
+      content: serviceData.serviceSection.content,
     },
-    customerTypes: [
-      "Domestic Households: Single Items to Full Loads.",
-      "Estate & Letting Agents.",
-      "Commercial Landlords & Landowners.",
-      "Shops, Bars & Restaurants.",
-      "Refurbishment Companies, Shop Fitters, Builders Etc.",
-    ],
+    customerTypes: serviceData.customerTypes,
     phoneNumber: "+44-7749991862",
     infoSection: {
       title: "Waste Carrier Licence",
@@ -86,28 +79,14 @@ const LocationPage = () => {
         { text: "Same Day Service", url: "#" },
       ],
     },
-    faq: [
-      {
-        question: `What types of waste do you remove in ${formatLocationName(location)}?`,
-        answer: "We remove a wide range of waste types including household rubbish, garden waste, office clearance, construction debris, bulky items, and electronic waste. We also consider hazardous waste removal on request.",
-      },
-      {
-        question: `How quickly can you provide waste removal in ${formatLocationName(location)}?`,
-        answer: `We offer same-day and next-day waste removal services across most areas of ${formatLocationName(location)}, subject to availability. For urgent jobs, we recommend booking as early as possible.`,
-      },
-      {
-        question: `How do I book a waste removal service in ${formatLocationName(location)} with Waste Rescuers?`,
-        answer: "Booking is simple. You can call us directly, fill out the quote form on our website, or use our online booking system. Just provide the waste details, location, and preferred date — we'll handle the rest.",
-      },
-      {
-        question: `Do you offer waste removal services for commercial properties in ${formatLocationName(location)}?`,
-        answer: `Yes, we provide tailored waste removal solutions for offices, retail stores, landlords, estate agents, construction sites, and other commercial premises across ${formatLocationName(location)}.`,
-      },
-      {
-        question: `What areas in ${formatLocationName(location)} do you cover?`,
-        answer: `We cover all Greater ${formatLocationName(location)} boroughs including Central ${formatLocationName(location)}, North, South, East, and West ${formatLocationName(location)}. Whether you're in a residential area or a busy commercial zone, we've got you covered.`,
-      },
-    ],
+    faq: serviceData.faqData.map(item => ({
+      question: item.question.includes('do you cover') 
+        ? item.question.replace('do you cover', `do you cover in ${formatLocationName(location)}`)
+        : item.question,
+      answer: item.answer.includes('across all areas') 
+        ? item.answer.replace('across all areas', `across all areas of ${formatLocationName(location)}`)
+        : item.answer
+    })),
   };
 
   // Custom FAQ component using location data
@@ -121,10 +100,10 @@ const LocationPage = () => {
     return (
       <div className="mt-16 px-4 sm:px-6 md:px-12 max-w-4xl mx-auto">
         <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-800 mb-8">
-          Frequently Asked Questions
+          Frequently Asked Questions - {formatLocationName(location)}
         </h2>
         <div className="space-y-4">
-          {staticData.faq.map((item, index) => (
+          {pageData.faq.map((item, index) => (
             <div
               key={index}
               className="border border-gray-300 rounded-lg overflow-hidden"
@@ -158,34 +137,34 @@ const LocationPage = () => {
   return (
     <div>
       <SEO 
-        title={staticData.seo.title}
-        description={staticData.seo.description}
-        keywords={staticData.seo.keywords}
-        canonical={staticData.seo.canonical}
+        title={pageData.seo.title}
+        description={pageData.seo.description}
+        keywords={pageData.seo.keywords}
+        canonical={pageData.seo.canonical}
       />
       <Header />
       
       <LocationHero 
-        {...staticData.hero}
+        {...pageData.hero}
         onBookAppointment={openPopup}
       />
 
       <ServiceSection
-        {...staticData.mainSection}
-        phoneNumber={staticData.phoneNumber}
+        {...pageData.mainSection}
+        phoneNumber={pageData.phoneNumber}
         onBookAppointment={openPopup}
       />
 
       <CustomerTypesSection
-        title={staticData.serviceSection.title}
-        description={staticData.serviceSection.content}
-        customerTypes={staticData.customerTypes}
-        phoneNumber={staticData.phoneNumber}
+        title={pageData.serviceSection.title}
+        description={pageData.serviceSection.content}
+        customerTypes={pageData.customerTypes}
+        phoneNumber={pageData.phoneNumber}
         onBookAppointment={openPopup}
       />
 
       {/* Info Section */}
-      <InfoSection {...staticData.infoSection} />
+      <InfoSection {...pageData.infoSection} />
 
       {/* Dynamic FAQ */}
       <LocationFaq />
