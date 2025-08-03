@@ -1,4 +1,35 @@
 // Dynamic location data configuration
+
+// Static sections for waste-removal service across all locations
+const wasteRemovalStaticSections = {
+  backgroundImage: "/assets/cleaner.webp",
+  customerTypes: [
+    "Domestic Households: Single Items to Full Loads.",
+    "Estate & Letting Agents.",
+    "Commercial Landlords & Landowners.",
+    "Shops, Bars & Restaurants.",
+    "Refurbishment Companies, Shop Fitters, Builders Etc.",
+  ],
+  infoSection: {
+    title: "Waste Carrier Licence",
+    content: [
+      "From January 2014, new regulations mean that companies transporting waste as part of their business (whether it's their waste or someone else's) have to register for a Waste Carriers Licence. This includes contractors like Waste Rescuers but also any company that conducts water discharge activities. We highly recommend giving us a call to see what we can do for you today to avoid costly fines.",
+      "Check out our fleet vehicles ready to tackle your waste management:",
+    ],
+    image: "/assets/waste-carrier.jpg",
+    imageAlt: "Waste Carrier Truck",
+    links: [
+      { text: "Professional Waste Collection", url: "#" },
+      { text: "Licensed Waste Carriers", url: "#" },
+      { text: "Eco-Friendly Disposal", url: "#" },
+      { text: "Same Day Service", url: "#" },
+    ],
+  },
+};
+
+// Static phone number for all locations
+const staticPhoneNumber = "+44-7749991862";
+
 export const locationData = {
   // Waste Removal Locations
   "waste-removal": {
@@ -12,7 +43,6 @@ export const locationData = {
       hero: {
         title: "Rubbish and Waste Removal London",
         subtitle: "Call Now for a free same-day quotation",
-        backgroundImage: "/assets/cleaner.webp",
       },
       mainSection: {
         title: "Waste Removal London by Waste Rescuers Ltd.",
@@ -33,27 +63,11 @@ export const locationData = {
         ],
       },
       customerTypes: [
-        "Domestic Households: Single Items to Full Loads.",
-        "Estate & Letting Agents.",
-        "Commercial Landlords & Landowners.",
-        "Shops, Bars & Restaurants.",
-        "Refurbishment Companies, Shop Fitters, Builders Etc.",
+        "Residential Properties",
+        "Commercial Businesses", 
+        "Construction Sites",
+        "Retail Establishments",
       ],
-      infoSection: {
-        title: "Waste Carrier Licence",
-        content: [
-          "From January 2014, new regulations mean that companies transporting waste as part of their business (whether it's their waste or someone else's) have to register for a Waste Carriers Licence. This includes contractors like Waste Rescuers but also any company that conducts water discharge activities. We highly recommend giving us a call to see what we can do for you today to avoid costly fines.",
-          "Check out our fleet vehicles ready to tackle your waste management:",
-        ],
-        image: "/assets/waste-carrier.jpg",
-        imageAlt: "Waste Carrier Truck",
-        links: [
-          { text: "Professional Waste Collection", url: "#" },
-          { text: "Licensed Waste Carriers", url: "#" },
-          { text: "Eco-Friendly Disposal", url: "#" },
-          { text: "Same Day Service", url: "#" },
-        ],
-      },
       phoneNumber: "+44-7749991862",
       faq: [
         {
@@ -88,7 +102,6 @@ export const locationData = {
       hero: {
         title: "Waste Removal Services in Manchester",
         subtitle: "Fast & Reliable Collection",
-        backgroundImage: "/assets/cleaner.webp",
       },
       mainSection: {
         title: "Professional Waste Removal in Manchester",
@@ -105,12 +118,11 @@ export const locationData = {
         ],
       },
       customerTypes: [
-        "Residential Properties",
-        "Commercial Businesses",
-        "Construction Sites",
-        "Retail Establishments",
+        "Residential Properties: Single Items to Full Loads.",
+        "Commercial Businesses: Office and retail clearances.",
+        "Construction Sites: Debris and material removal.",
+        "Retail Establishments: Regular waste collection.",
       ],
-      phoneNumber: "+44-7749991862",
       faq: [
         {
           question: "What types of waste removal services do Waste Rescuers offer in Manchester?",
@@ -223,7 +235,6 @@ export const locationData = {
         "Student Housing",
         "Furniture Stores",
       ],
-      phoneNumber: "+44-7749991862",
       faq: [
         {
           question: "Do you collect mattresses from inside my home?",
@@ -248,5 +259,28 @@ export const locationData = {
 
 // Helper function to get location data
 export const getLocationData = (service, location) => {
-  return locationData[service]?.[location] || null;
+  const data = locationData[service]?.[location] || null;
+  
+  if (!data) return null;
+  
+  // Add static phone number to all locations
+  const result = {
+    ...data,
+    phoneNumber: staticPhoneNumber,
+  };
+  
+  // If it's a waste-removal service, merge with static sections
+  if (service === 'waste-removal') {
+    return {
+      ...result,
+      hero: {
+        ...result.hero,
+        backgroundImage: wasteRemovalStaticSections.backgroundImage,
+      },
+      customerTypes: wasteRemovalStaticSections.customerTypes,
+      infoSection: wasteRemovalStaticSections.infoSection,
+    };
+  }
+  
+  return result;
 };
