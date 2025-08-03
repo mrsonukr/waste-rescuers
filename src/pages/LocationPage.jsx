@@ -10,7 +10,6 @@ import LocationHero from "../components/ui/LocationHero";
 import ServiceSection from "../components/ui/ServiceSection";
 import CustomerTypesSection from "../components/ui/CustomerTypesSection";
 import InfoSection from "../components/ui/InfoSection";
-import ProcessSection from "../components/ui/ProcessSection";
 import { getLocationPageData, isValidLocation } from "../data/locationPageData";
 import { getServiceLocationData } from "../data/serviceLocationData";
 
