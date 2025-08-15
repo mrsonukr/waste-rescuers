@@ -241,8 +241,8 @@ const Services = () => {
   const openPopup = () => setIsPopupOpen(true);
   const closePopup = () => setIsPopupOpen(false);
 
-  // If no specific service is selected, show all services
-  if (!selectedService) {
+  // If no serviceSlug is provided, show all services
+  if (!serviceSlug) {
     return (
       <div>
         <SEO 
